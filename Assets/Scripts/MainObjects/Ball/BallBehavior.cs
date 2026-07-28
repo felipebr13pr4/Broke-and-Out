@@ -1,0 +1,28 @@
+using System.Collections;
+using UnityEngine;
+
+[RequireComponent(typeof(Rigidbody2D))]
+public class BallBehavior : MonoBehaviour
+{
+    private Rigidbody2D m_rigidBody2d;
+    private void Start() => m_rigidBody2d = GetComponent<Rigidbody2D>();
+
+    private void FixedUpdate()
+    {
+        float sizeAdjustment = transform.localScale.x / 2;
+
+        if (m_rigidBody2d.position.y <= ScreenBounds.Bottom - sizeAdjustment)
+            StartCoroutine(Reposition());
+    }
+
+    private IEnumerator Reposition()
+    {
+        print("repositioning");
+        for (int i = 0; i <= 25; i++)
+        {
+            m_rigidBody2d.linearVelocity = Vector2.zero;
+            m_rigidBody2d.transform.position = Vector2.zero;
+            yield return new WaitForSeconds(0.01f);
+        }
+    }
+}
