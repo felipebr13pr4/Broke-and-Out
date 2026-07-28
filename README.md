@@ -4,6 +4,10 @@ This repo is for learning. Comments are welcome. I will not be accepting pulling
 
 This will probably just be a Breakout clone but with some more things.
 
+A to move left.
+D to move right.
+Hit the ball with your paddle to make it go up.
+
 Develop branch will be where recent changes will be. And most of development.
 
 # Project Plan
