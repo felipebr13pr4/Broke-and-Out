@@ -23,7 +23,7 @@ public class BrickSpawnerBehavior : MonoBehaviour
         for (int i = 0; i < 5; i++)
         {
             //test
-            for (int j = 0; j < 10; j++)
+            for (int j = 0; j < 11; j++)
             {
                 m_rowData[i].P_BrickData[j].P_timeToMove = 3;
                 m_rowData[i].P_BrickData[j].P_distanceToMove = 1;
