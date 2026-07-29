@@ -10,6 +10,9 @@ Hit the ball with your paddle to make it go up.
 
 Develop branch will be where recent changes will be. And most of development.
 
+If you clone this project, be aware that your editor game window resolution must correlate to the available resolutions so fonts won't break.
+(1080x1920 (Most Ideal), 900x1600, 720x1280, 540x960, 360x640, 180x320)
+
 # Project Plan
 
 Made at the very start of the repo.
