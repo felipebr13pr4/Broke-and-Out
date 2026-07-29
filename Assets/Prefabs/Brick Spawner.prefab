@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6558128532839840211}
+  - component: {fileID: 6935537129874071641}
   m_Layer: 0
   m_Name: Brick Spawner
   m_TagString: Untagged
@@ -36,6 +37,24 @@ Transform:
   - {fileID: 1206315144222093486}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6935537129874071641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 683191150855456958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4e004f208ba6764c919705d4ac4a7ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BrickSpawnerBehavior
+  m_rows:
+  - {fileID: 8242255779626335405}
+  - {fileID: 7578417356829502091}
+  - {fileID: 2375529803513699411}
+  - {fileID: 7373196007675162559}
+  - {fileID: 4547065869259748620}
 --- !u!1001 &11072021398801735
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -98,6 +117,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5319404475850041178, guid: ffb83b1adb99d5b4c9aaae2005fc65af, type: 3}
   m_PrefabInstance: {fileID: 11072021398801735}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7373196007675162559 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7382964693320966904, guid: ffb83b1adb99d5b4c9aaae2005fc65af, type: 3}
+  m_PrefabInstance: {fileID: 11072021398801735}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89a6d9bcf06dfdd4c8afbf0910ab4a4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BrickRowBehavior
 --- !u!1001 &1107460180135610483
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -160,6 +190,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5319404475850041178, guid: ffb83b1adb99d5b4c9aaae2005fc65af, type: 3}
   m_PrefabInstance: {fileID: 1107460180135610483}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7578417356829502091 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7382964693320966904, guid: ffb83b1adb99d5b4c9aaae2005fc65af, type: 3}
+  m_PrefabInstance: {fileID: 1107460180135610483}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89a6d9bcf06dfdd4c8afbf0910ab4a4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BrickRowBehavior
 --- !u!1001 &1447855275832516181
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -222,6 +263,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5319404475850041178, guid: ffb83b1adb99d5b4c9aaae2005fc65af, type: 3}
   m_PrefabInstance: {fileID: 1447855275832516181}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8242255779626335405 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7382964693320966904, guid: ffb83b1adb99d5b4c9aaae2005fc65af, type: 3}
+  m_PrefabInstance: {fileID: 1447855275832516181}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89a6d9bcf06dfdd4c8afbf0910ab4a4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BrickRowBehavior
 --- !u!1001 &5080654668752502443
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -284,6 +336,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5319404475850041178, guid: ffb83b1adb99d5b4c9aaae2005fc65af, type: 3}
   m_PrefabInstance: {fileID: 5080654668752502443}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2375529803513699411 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7382964693320966904, guid: ffb83b1adb99d5b4c9aaae2005fc65af, type: 3}
+  m_PrefabInstance: {fileID: 5080654668752502443}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89a6d9bcf06dfdd4c8afbf0910ab4a4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BrickRowBehavior
 --- !u!1001 &6444619269197142004
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -346,3 +409,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5319404475850041178, guid: ffb83b1adb99d5b4c9aaae2005fc65af, type: 3}
   m_PrefabInstance: {fileID: 6444619269197142004}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4547065869259748620 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7382964693320966904, guid: ffb83b1adb99d5b4c9aaae2005fc65af, type: 3}
+  m_PrefabInstance: {fileID: 6444619269197142004}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89a6d9bcf06dfdd4c8afbf0910ab4a4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BrickRowBehavior

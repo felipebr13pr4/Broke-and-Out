@@ -8,6 +8,12 @@ public class BricksMovement : MonoBehaviour
 
     private void Start() => StartCoroutine(Move());
 
+    public void SetMovement(float time, float distance)
+    {
+        m_timeToMove = time;
+        m_distanceToMove = distance;
+    }
+
     private IEnumerator Move()
     {
         while (true)

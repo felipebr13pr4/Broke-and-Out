@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class BallBehavior : MonoBehaviour
 {
+    [SerializeField] private Transform m_paddle;
     private Rigidbody2D m_rigidBody2d;
     private void Start() => m_rigidBody2d = GetComponent<Rigidbody2D>();
 
@@ -21,7 +22,7 @@ public class BallBehavior : MonoBehaviour
         for (int i = 0; i <= 25; i++)
         {
             m_rigidBody2d.linearVelocity = Vector2.zero;
-            m_rigidBody2d.transform.position = Vector2.zero;
+            m_rigidBody2d.transform.position = new(m_paddle.transform.position.x,0);
             yield return new WaitForSeconds(0.01f);
         }
     }
