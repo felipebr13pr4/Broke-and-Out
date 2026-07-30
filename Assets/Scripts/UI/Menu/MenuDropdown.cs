@@ -9,25 +9,13 @@ public class MenuDropdown : MonoBehaviour
     private TMP_Dropdown m_dropdownComponent;
     public static event Action<DropdownType, int, string> OnDropdown;
 
-    private void Awake()
-    {
-        m_dropdownComponent = GetComponent<TMP_Dropdown>();
-    }
+    private void Awake() => m_dropdownComponent = GetComponent<TMP_Dropdown>();
 
-    private void Start()
-    {
-        InitialState();
-    }
+    private void Start() => InitialState();
 
-    private void OnEnable()
-    {
-        m_dropdownComponent.onValueChanged.AddListener(DropdownChanged);
-    }
+    private void OnEnable() => m_dropdownComponent.onValueChanged.AddListener(DropdownChanged);
 
-    private void OnDisable()
-    {
-        m_dropdownComponent.onValueChanged.RemoveListener(DropdownChanged);
-    }
+    private void OnDisable() => m_dropdownComponent.onValueChanged.RemoveListener(DropdownChanged);
 
     private void DropdownChanged(int index)
     {

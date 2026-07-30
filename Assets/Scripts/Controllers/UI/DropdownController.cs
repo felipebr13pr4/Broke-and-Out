@@ -46,8 +46,8 @@ public class DropdownController : MonoBehaviour
         {
             string[] optionSize = optionName.Split("x");
 
-            width = (int.Parse)(optionSize[0]);
-            height = (int.Parse)(optionSize[1]);
+            width = int.Parse(optionSize[0]);
+            height = int.Parse(optionSize[1]);
         }
     }
 }

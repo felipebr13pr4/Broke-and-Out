@@ -13,15 +13,9 @@ public class MenuSlider : MonoBehaviour
 
     private void Start() => SliderInitialValue();
 
-    private void OnEnable()
-    {
-        m_sliderComponent.onValueChanged.AddListener(SliderChanged);
-    }
+    private void OnEnable() => m_sliderComponent.onValueChanged.AddListener(SliderChanged);
 
-    private void OnDisable()
-    {
-        m_sliderComponent.onValueChanged.RemoveListener(SliderChanged);
-    }
+    private void OnDisable() => m_sliderComponent.onValueChanged.RemoveListener(SliderChanged);
 
     private void SliderChanged(float value)
     {

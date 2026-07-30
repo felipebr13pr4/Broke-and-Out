@@ -9,26 +9,14 @@ public class MenuCheckmark : MonoBehaviour
     private Toggle m_toggleComponent;
     public static event Action<CheckmarkType, bool> OnCheckmark;
 
-    private void Awake()
-    {
-        m_toggleComponent = GetComponent<Toggle>();
-    }
+    private void Awake() => m_toggleComponent = GetComponent<Toggle>();
 
-    private void Start()
-    {
-        InitialState();
-    }
+    private void Start() => InitialState();
 
-    private void OnEnable()
-    {
-        m_toggleComponent.onValueChanged.AddListener(CheckmarkClicked);
-    }
-
-    private void OnDisable()
-    {
-        m_toggleComponent.onValueChanged.RemoveListener(CheckmarkClicked);
-    }
-
+    private void OnEnable() => m_toggleComponent.onValueChanged.AddListener(CheckmarkClicked);
+    
+    private void OnDisable() => m_toggleComponent.onValueChanged.RemoveListener(CheckmarkClicked);
+    
     private void CheckmarkClicked(bool state)
     {
         OnCheckmark?.Invoke(m_checkmarkType, state);

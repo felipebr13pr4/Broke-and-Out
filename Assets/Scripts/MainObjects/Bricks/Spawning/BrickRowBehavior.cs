@@ -28,7 +28,7 @@ public class BrickRowBehavior : MonoBehaviour
         for (int i = 0; i < m_bricks.Length; i++)
         {
             m_bricks[i].gameObject.SetActive(m_rowData.P_ShouldBrickActive[i]);
-            m_bricks[i].SetMovement(m_rowData.P_BrickData[i].P_timeToMove,
+            m_bricks[i].InitializeMovement(m_rowData.P_BrickData[i].P_timeToMove,
                                   m_rowData.P_BrickData[i].P_distanceToMove);
         }
     }

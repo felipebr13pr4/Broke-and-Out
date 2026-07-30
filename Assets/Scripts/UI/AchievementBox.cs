@@ -25,9 +25,6 @@ public class AchievementBox : MonoBehaviour
                             amount.ToString() + " / " + m_reqAmount.ToString();
     }
 
-    [ContextMenu("Define Text Contents.")]
-    private void Start() => m_nameText.text = m_name;
-
     private bool HasAchievedGoal(AchievementType type, int reqAmount)
     {
         int amount = CheckWhichAmountByType(type);
@@ -41,5 +38,19 @@ public class AchievementBox : MonoBehaviour
             _ => 0,
         };
         return amount;
+    }
+
+    public void Initialize(string name, AchievementType type, int reqAmount)
+    {
+        m_name = name;
+        m_type = type;
+        m_reqAmount = reqAmount;
+    }
+
+    [ContextMenu("Set Contents.")]
+    private void SetContents()
+    {
+        m_nameText.text = m_name;
+        m_numberText.text = m_reqAmount.ToString() + " / " + m_reqAmount.ToString();
     }
 }
