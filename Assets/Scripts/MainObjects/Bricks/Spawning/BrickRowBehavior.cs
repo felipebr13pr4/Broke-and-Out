@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BrickRowBehavior : MonoBehaviour
@@ -27,9 +28,42 @@ public class BrickRowBehavior : MonoBehaviour
         yield return null;
         for (int i = 0; i < m_bricks.Length; i++)
         {
+            BrickType type = m_rowData.P_BrickData[i].P_BrickType;
+
+            bool isSpecial = type != BrickType.Basic;
+            if (isSpecial) HandleSpecialBrick(type, m_rowData.P_BrickData[i], i);
+
+            if (!isSpecial)
+            { m_bricks[i].AddComponent<BrickBehavior>();
+
+                BrickBehavior brickBehavior = m_bricks[i].GetComponent<BrickBehavior>();
+
+                brickBehavior.Initialize(m_rowData.P_BrickData[i].P_Health); }
+
             m_bricks[i].gameObject.SetActive(m_rowData.P_ShouldBrickActive[i]);
-            m_bricks[i].InitializeMovement(m_rowData.P_BrickData[i].P_timeToMove,
-                                  m_rowData.P_BrickData[i].P_distanceToMove);
+            
+            m_bricks[i].InitializeMovement(m_rowData.P_BrickData[i].P_TimeToMove,
+                                  m_rowData.P_BrickData[i].P_DistanceToMove);
+        }
+    }
+
+    private void HandleSpecialBrick(BrickType type, BrickData brickData, int i)
+    {
+        if (type == BrickType.Ranged)
+        {
+            m_bricks[i].AddComponent<RangedBrickBehavior>();
+
+            RangedBrickBehavior rangedBrickBehavior = m_bricks[i].GetComponent<RangedBrickBehavior>();
+
+            rangedBrickBehavior.Initialize(brickData.P_Health, brickData.P_RangedData.P_FireRate);
+        }
+        else
+        {
+            m_bricks[i].AddComponent<ExplosiveBrickBehavior>();
+
+            ExplosiveBrickBehavior explosiveBrickBehavior = m_bricks[i].GetComponent<ExplosiveBrickBehavior>();
+
+            explosiveBrickBehavior.Initialize(brickData.P_Health, brickData.P_ExplosiveData.P_ExplosionRange);
         }
     }
 }
