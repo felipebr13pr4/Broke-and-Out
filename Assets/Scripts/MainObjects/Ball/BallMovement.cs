@@ -40,7 +40,7 @@ public class BallMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Brick")) {
             Vector2 dir = new(m_previousVelocity.x,
                 -(collision.transform.position.y - m_rigidBody2d.transform.position.y) * (m_bounceForce/5));
-            Bounce(dir); collision.gameObject.SetActive(false);
+            Bounce(dir);
         }
     }
 

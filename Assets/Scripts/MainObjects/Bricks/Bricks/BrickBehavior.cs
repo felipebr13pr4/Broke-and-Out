@@ -15,13 +15,7 @@ public class BrickBehavior : EntityBehavior
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            PlayerBehavior player = collision.gameObject.GetComponent<PlayerBehavior>();
-
-            int healthBeforeAttack = P_Health;
-            int playerHealthBeforeAttack = player.P_Health;
-
-            player.P_Health -= healthBeforeAttack;
-            P_Health -= playerHealthBeforeAttack;
+            TakeDamage(hitter: collision);
         }
     }
 
@@ -31,9 +25,8 @@ public class BrickBehavior : EntityBehavior
         base.Die();
     }
 
-    public void Initialize(int health)
+    public void Initialize()
     {
-        P_Health = health;
-        SetHealth(health);
+        InitializeColor(0.2f, 1, 0.2f);
     }
 }

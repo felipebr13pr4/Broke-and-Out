@@ -20,6 +20,7 @@ public class BricksMovement : MonoBehaviour
         {
             yield return new WaitForSeconds(m_timeToMove);
             transform.position += Vector3.down * m_distanceToMove;
+            if (transform.position.y < ScreenBounds.Bottom - 0.5f) gameObject.SetActive(false);
         }
     }
 }

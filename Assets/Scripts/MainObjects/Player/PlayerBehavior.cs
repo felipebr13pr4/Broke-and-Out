@@ -6,7 +6,7 @@ public class PlayerBehavior : EntityBehavior
     {
         if (collision.gameObject.CompareTag("Brick"))
         {
-            P_Health -= 1;
+            TakeDamage(hitter: collision);
         }
     }
 

@@ -39,6 +39,7 @@ public class BrickSpawnerBehavior : MonoBehaviour
             {
                 int healthRandomness = Random.Range(1, 4);
                 m_rowData[i].P_BrickData[j].P_Health = healthRandomness;
+                print(m_rowData[i].P_BrickData[j].P_Health + " health");
 
                 int typeRandomness = Random.Range(0, 3);
                 BrickType type = typeRandomness == 0 ? BrickType.Basic :
@@ -51,7 +52,7 @@ public class BrickSpawnerBehavior : MonoBehaviour
                 m_rowData[i].P_BrickData[j].P_DistanceToMove = 1;
 
                 int activeRandomness = Random.Range(0, 2);
-                m_rowData[i].P_ShouldBrickActive[j] = activeRandomness == 1 ? true : false;
+                m_rowData[i].P_ShouldBrickActive[j] = activeRandomness == 1;
 
                 print(m_rowData[i].P_BrickData[j].P_RangedData.P_FireRate + " " + type);
             }

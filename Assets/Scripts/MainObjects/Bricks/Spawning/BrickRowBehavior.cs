@@ -34,11 +34,10 @@ public class BrickRowBehavior : MonoBehaviour
             if (isSpecial) HandleSpecialBrick(type, m_rowData.P_BrickData[i], i);
 
             if (!isSpecial)
-            { m_bricks[i].AddComponent<BrickBehavior>();
-
-                BrickBehavior brickBehavior = m_bricks[i].GetComponent<BrickBehavior>();
-
-                brickBehavior.Initialize(m_rowData.P_BrickData[i].P_Health); }
+            {m_bricks[i].AddComponent<BrickBehavior>();
+             BrickBehavior brickBehavior = m_bricks[i].GetComponent<BrickBehavior>();
+             brickBehavior.InitializeHealth(m_rowData.P_BrickData[i].P_Health);
+             brickBehavior.Initialize(); }
 
             m_bricks[i].gameObject.SetActive(m_rowData.P_ShouldBrickActive[i]);
             
@@ -54,8 +53,9 @@ public class BrickRowBehavior : MonoBehaviour
             m_bricks[i].AddComponent<RangedBrickBehavior>();
 
             RangedBrickBehavior rangedBrickBehavior = m_bricks[i].GetComponent<RangedBrickBehavior>();
-
-            rangedBrickBehavior.Initialize(brickData.P_Health, brickData.P_RangedData.P_FireRate);
+            
+            rangedBrickBehavior.InitializeHealth(m_rowData.P_BrickData[i].P_Health);
+            rangedBrickBehavior.Initialize(brickData.P_RangedData.P_FireRate);
         }
         else
         {
@@ -63,7 +63,8 @@ public class BrickRowBehavior : MonoBehaviour
 
             ExplosiveBrickBehavior explosiveBrickBehavior = m_bricks[i].GetComponent<ExplosiveBrickBehavior>();
 
-            explosiveBrickBehavior.Initialize(brickData.P_Health, brickData.P_ExplosiveData.P_ExplosionRange);
+            explosiveBrickBehavior.InitializeHealth(m_rowData.P_BrickData[i].P_Health);
+            explosiveBrickBehavior.Initialize(brickData.P_ExplosiveData.P_ExplosionRange);
         }
     }
 }

@@ -27,8 +27,8 @@ public class PixelPerfectUIScale : MonoBehaviour
         if (Screen.width != m_lastWidth || Screen.fullScreenMode != FullScreenMode.FullScreenWindow)
         {
             m_lastWidth = Screen.width;
-            float scale = Mathf.Max(0.21f, (float)(Screen.width) / (float)(m_referenceWidth));
-            m_scaler.scaleFactor = scale;
+            float scale = (float)(Screen.width) / (float)(m_referenceWidth);
+            m_scaler.scaleFactor = Mathf.Clamp(scale, 0.21f, 0.7f);
         }
     }
 }

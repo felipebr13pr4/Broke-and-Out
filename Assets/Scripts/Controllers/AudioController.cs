@@ -3,12 +3,6 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class AudioController : MonoBehaviour
 {
-    [SerializeField] private AudioClip m_audioBallHitScreen;
-    [SerializeField] private AudioClip m_audioBallFell;
-    [SerializeField] private AudioClip m_audioPaddleHit;
-    [SerializeField] private AudioClip m_audioPauseWindowOpen;
-    [SerializeField] private AudioClip m_audioBreakBrick;
-
     private float m_audioVolume = 1;
 
     private AudioSource m_audioSource;
@@ -31,32 +25,26 @@ public class AudioController : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    private void OnEnable()
+    {
+        AudioHolder.OnAudio += PlayAudio;
+    }
+
+    private void OnDisable()
+    {
+        AudioHolder.OnAudio -= PlayAudio;
+    }
+
     private void Start()
     {
         m_audioSource = GetComponent<AudioSource>();
         m_audioVolume = PlayerPrefs.GetFloat("Volume", 1f);
     }
 
-    public void PlayAudio(AudioType type)
+    public void PlayAudio(AudioClip clip)
     {
         m_audioSource.pitch = Random.Range(0.75f, 1.25f);
-        switch (type)
-        {
-            case AudioType.BallHitScreen:
-                m_audioSource.PlayOneShot(m_audioBallHitScreen, m_audioVolume); return;
-
-            case AudioType.BallFell:
-                m_audioSource.PlayOneShot(m_audioBallFell, m_audioVolume); return;
-
-            case AudioType.PaddleHit:
-                m_audioSource.PlayOneShot(m_audioPaddleHit, m_audioVolume); return;
-
-            case AudioType.PauseWindowOpen:
-                m_audioSource.PlayOneShot(m_audioPauseWindowOpen, m_audioVolume); return;
-
-            case AudioType.BreakBrick:
-                m_audioSource.PlayOneShot(m_audioBreakBrick, m_audioVolume); return;
-        }
+        m_audioSource.PlayOneShot(clip, m_audioVolume);
     }
 
     public void SetAudio(float value)

@@ -18,6 +18,14 @@ public class BallBehavior : MonoBehaviour
             StartCoroutine(Reposition());
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Brick"))
+        {
+            EntityBehavior brick = collision.gameObject.GetComponent<EntityBehavior>();
+            brick.TakeDamage(1);
+        }
+    }
     private IEnumerator Reposition()
     {
         print("repositioning");
@@ -25,7 +33,8 @@ public class BallBehavior : MonoBehaviour
         for (int i = 0; i <= 25; i++)
         {
             m_rigidBody2d.linearVelocity = Vector2.zero;
-            m_rigidBody2d.transform.position = new(m_paddle.transform.position.x,0);
+            m_rigidBody2d.transform.position = new(m_paddle.transform.position.x,
+                                                   m_paddle.transform.position.y+6);
             yield return new WaitForSeconds(0.01f);
         }
         m_isRepositioning = false;

@@ -3,11 +3,15 @@ public class RangedBrickBehavior : BrickBehavior
 {
     [SerializeField] private float m_fireRate;
 
-    public void Initialize(int health, float fireRate)
+    protected override void Start()
+    {
+        base.Start();
+    }
+
+    public void Initialize(float fireRate)
     {
         m_fireRate = fireRate;
-        P_Health = health;
-        SetHealth(health);
+        InitializeColor(1, 1, 0.2f);
     }
 
     private void Shoot()

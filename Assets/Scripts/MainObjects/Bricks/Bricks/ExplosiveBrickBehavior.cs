@@ -4,11 +4,10 @@ public class ExplosiveBrickBehavior : BrickBehavior
 {
     [SerializeField] private int m_explosionRange;
 
-    public void Initialize(int health, int explosionRange)
+    public void Initialize(int explosionRange)
     {
         m_explosionRange = explosionRange;
-        P_Health = health;
-        SetHealth(health);
+        InitializeColor(1, 0.2f, 0.2f);
     }
 
     protected override void Die()

@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Button))]
+[RequireComponent(typeof(AudioHolder))]
 public class PauseButton : MonoBehaviour
 {
     [SerializeField] private RectTransform m_pauseWindow;
@@ -29,7 +30,7 @@ public class PauseButton : MonoBehaviour
 
     public void TogglePause()
     {
-        AudioController.Instance.PlayAudio(AudioType.PauseWindowOpen);
+        GetComponent<AudioHolder>().ActivateSound(0);
         Time.timeScale = Time.timeScale > 0 ? 0 : 1;
         bool shouldOpenPauseWindow = Time.timeScale < 1;
         m_pauseWindow.gameObject.SetActive(shouldOpenPauseWindow);
