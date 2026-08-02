@@ -15,7 +15,7 @@ public class BallBehavior : MonoBehaviour
         float sizeAdjustment = transform.localScale.x / 2;
 
         if (!m_isRepositioning && m_rigidBody2d.position.y <= ScreenBounds.Bottom - sizeAdjustment)
-            StartCoroutine(Reposition());
+            Reposition();
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -26,17 +26,17 @@ public class BallBehavior : MonoBehaviour
             brick.TakeDamage(1);
         }
     }
-    private IEnumerator Reposition()
+    private void Reposition()
     {
         print("repositioning");
         m_isRepositioning = true;
-        for (int i = 0; i <= 25; i++)
-        {
-            m_rigidBody2d.linearVelocity = Vector2.zero;
-            m_rigidBody2d.transform.position = new(m_paddle.transform.position.x,
-                                                   m_paddle.transform.position.y+6);
-            yield return new WaitForSeconds(0.01f);
-        }
+
+        float dir = (m_paddle.position.x - m_rigidBody2d.position.x)/2;
+
+        m_rigidBody2d.linearVelocityY = 1;
+        m_rigidBody2d.linearVelocityX = dir;
+
+        m_rigidBody2d.transform.position = new(transform.position.x, ScreenBounds.Top+3);
         m_isRepositioning = false;
     }
 }

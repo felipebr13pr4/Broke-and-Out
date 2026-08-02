@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class EntityBehavior : MonoBehaviour
@@ -6,12 +5,14 @@ public class EntityBehavior : MonoBehaviour
     [SerializeField] protected Color m_color = Color.white;
     [SerializeField] private int m_maxHealth = 3;
     public int MaxHealth => m_maxHealth;
+    private int m_lastHealt;
     private int m_health;
     public int P_Health
     {
         get { return m_health; }
         set
         {
+            m_lastHealt = m_health;
             m_health = value;
             m_health = Mathf.Clamp(m_health, 0, m_maxHealth);
             if (m_health <= 0) Die(); else DarkenColor();
@@ -23,15 +24,15 @@ public class EntityBehavior : MonoBehaviour
     protected virtual void Start()
     {
         m_health = m_maxHealth;
+        m_sprite = GetComponentInChildren<SpriteRenderer>();
     }
 
-    public virtual void TakeDamage(int damage = 0, Collision2D hitter = null)
+    public virtual void TakeDamage(int damage = 0, EntityBehavior hitter = null, bool takeAndDeal = false)
     {
         if (hitter != null)
         {
-            EntityBehavior entity = hitter.gameObject.GetComponent<EntityBehavior>();
-
-            P_Health -= entity.P_Health;
+            P_Health -= hitter.P_Health;
+            if (takeAndDeal) hitter.TakeDamage(m_lastHealt);
             return;
         }
         P_Health -= damage;

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerBehavior : EntityBehavior
 {
@@ -6,7 +7,9 @@ public class PlayerBehavior : EntityBehavior
     {
         if (collision.gameObject.CompareTag("Brick"))
         {
-            TakeDamage(hitter: collision);
+            TakeDamage(hitter: collision.gameObject.GetComponent<EntityBehavior>(),
+                       takeAndDeal: true);
+            print(P_Health);
         }
     }
 

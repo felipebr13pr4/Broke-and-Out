@@ -41,6 +41,15 @@ public class AudioController : MonoBehaviour
         m_audioVolume = PlayerPrefs.GetFloat("Volume", 1f);
     }
 
+    public void PlayAudio(AudioData data)
+    {
+        float pitch = data.P_Pitch;
+        if (data.P_IsPitchRandom) pitch = Random.Range(data.P_Min, data.P_Max);
+        print("pitch: " + pitch);
+        m_audioSource.pitch = pitch;
+        m_audioSource.PlayOneShot(data.P_Clip, m_audioVolume);
+    }
+
     public void PlayAudio(AudioClip clip)
     {
         m_audioSource.pitch = Random.Range(0.75f, 1.25f);

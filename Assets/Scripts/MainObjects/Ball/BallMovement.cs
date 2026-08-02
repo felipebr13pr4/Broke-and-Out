@@ -14,7 +14,6 @@ public class BallMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        m_previousVelocity = m_rigidBody2d.linearVelocity;
 
         float sizeAdjustment = transform.localScale.x / 2;
 
@@ -26,7 +25,9 @@ public class BallMovement : MonoBehaviour
 
         if (m_rigidBody2d.position.x >= ScreenBounds.Right - sizeAdjustment |
             m_rigidBody2d.position.x <= ScreenBounds.Left + sizeAdjustment) {
-            Bounce(new(-m_rigidBody2d.linearVelocityX, m_rigidBody2d.linearVelocityY)); }
+            Bounce(new(-m_rigidBody2d.linearVelocityX, m_rigidBody2d.linearVelocityY));
+            m_previousVelocity = m_rigidBody2d.linearVelocity;
+        }
 
 
     }
@@ -36,8 +37,16 @@ public class BallMovement : MonoBehaviour
             Vector2 dir = -(collision.rigidbody.position - m_rigidBody2d.position);
             dir.y += m_bounceForce;
             Bounce(dir);
+            m_previousVelocity = m_rigidBody2d.linearVelocity;
         }
         if (collision.gameObject.CompareTag("Brick")) {
+            ContactPoint2D contact = collision.GetContact(0);
+            Vector2 edge = contact.normal;
+            
+            if (Mathf.Abs(edge.x) > Mathf.Abs(edge.y))
+                m_previousVelocity.x = edge.x > 0 ? 2.5f : -2.5f;
+
+            print(m_previousVelocity + " prev velo");
             Vector2 dir = new(m_previousVelocity.x,
                 -(collision.transform.position.y - m_rigidBody2d.transform.position.y) * (m_bounceForce/5));
             Bounce(dir);
