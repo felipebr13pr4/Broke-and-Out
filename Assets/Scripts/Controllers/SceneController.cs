@@ -19,13 +19,7 @@ public class SceneController : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Update()
-    {
-        if (Keyboard.current.rKey.wasPressedThisFrame) ReloadScene();
-        if (Keyboard.current.qKey.wasPressedThisFrame)
-        { if (Time.timeScale <= 0.1f) return; Time.timeScale -= 0.1f; }
-        if (Keyboard.current.eKey.wasPressedThisFrame) Time.timeScale += 0.1f;
-    }
+    
 
     public void LoadScene(SceneType type)
     {

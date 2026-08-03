@@ -21,7 +21,7 @@ public class BallMovement : MonoBehaviour
             Mathf.Clamp(m_rigidBody2d.transform.position.x, ScreenBounds.Left + sizeAdjustment,
                         ScreenBounds.Right - sizeAdjustment),
             Mathf.Clamp(m_rigidBody2d.transform.position.y, ScreenBounds.Bottom + sizeAdjustment - (sizeAdjustment * 2),
-                        ScreenBounds.Top - sizeAdjustment));
+                        ScreenBounds.Top - sizeAdjustment - (sizeAdjustment * 2)));
 
         if (m_rigidBody2d.position.x >= ScreenBounds.Right - sizeAdjustment |
             m_rigidBody2d.position.x <= ScreenBounds.Left + sizeAdjustment) {

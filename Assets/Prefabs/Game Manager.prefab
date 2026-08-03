@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3632225547943666693}
   - component: {fileID: 4324781058993697188}
   - component: {fileID: 505575381741167829}
+  - component: {fileID: -7591080307791504859}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -157,11 +158,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af516621c54192d45b1c4a6395252533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioController
-  m_audioBallHitScreen: {fileID: 8300000, guid: 493d9bf05739cc543a6f90874196b4f6, type: 3}
-  m_audioBallFell: {fileID: 8300000, guid: 14e86fde75d10e34a97bcdec7034e72c, type: 3}
-  m_audioPaddleHit: {fileID: 8300000, guid: 5117a8f343580a24a8b5bf9acf01f84d, type: 3}
-  m_audioPauseWindowOpen: {fileID: 8300000, guid: 5b0539c61ba8b5e49bc9cc08ecb0cf4c, type: 3}
-  m_audioBreakBrick: {fileID: 8300000, guid: f9ecf9dea61dafd478c69b649dc7403c, type: 3}
 --- !u!114 &4324781058993697188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,3 +182,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429808c0f6444df478360149cbb21173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameScreenController
+--- !u!114 &-7591080307791504859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6811808609328694500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d9a629b144753148910831f9aa690be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TesterController

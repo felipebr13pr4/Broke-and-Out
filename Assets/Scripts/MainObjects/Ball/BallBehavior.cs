@@ -5,8 +5,11 @@ using UnityEngine;
 public class BallBehavior : MonoBehaviour
 {
     [SerializeField] private Transform m_paddle;
+    [SerializeField] private RepositionArea m_repositioningArea;
     private Rigidbody2D m_rigidBody2d;
     private bool m_isRepositioning = false;
+    
+
     
     private void Start() => m_rigidBody2d = GetComponent<Rigidbody2D>();
 
@@ -15,7 +18,7 @@ public class BallBehavior : MonoBehaviour
         float sizeAdjustment = transform.localScale.x / 2;
 
         if (!m_isRepositioning && m_rigidBody2d.position.y <= ScreenBounds.Bottom - sizeAdjustment)
-            Reposition();
+            StartCoroutine(PlayerReposition());
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -26,17 +29,32 @@ public class BallBehavior : MonoBehaviour
             brick.TakeDamage(1);
         }
     }
-    private void Reposition()
+    private IEnumerator PlayerReposition()
     {
         print("repositioning");
         m_isRepositioning = true;
 
-        float dir = (m_paddle.position.x - m_rigidBody2d.position.x)/2;
+        if (m_repositioningArea.P_IsBrickinside) { VoidRepositioning(); yield break; }
+        
+        for (int i = 0; i <= 25; i++)
+        {
+            m_rigidBody2d.linearVelocity = Vector2.zero;
+            m_rigidBody2d.transform.position = new(m_paddle.transform.position.x, -10);
+
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        m_isRepositioning = false;
+    }
+
+    private void VoidRepositioning()
+    {
+        float dir = (m_paddle.position.x - m_rigidBody2d.position.x) / 2;
 
         m_rigidBody2d.linearVelocityY = 1;
         m_rigidBody2d.linearVelocityX = dir;
 
-        m_rigidBody2d.transform.position = new(transform.position.x, ScreenBounds.Top+3);
+        m_rigidBody2d.transform.position = new(transform.position.x, ScreenBounds.Top + 1);
         m_isRepositioning = false;
     }
 }

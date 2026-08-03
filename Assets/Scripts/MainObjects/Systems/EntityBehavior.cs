@@ -15,7 +15,7 @@ public class EntityBehavior : MonoBehaviour
             m_lastHealt = m_health;
             m_health = value;
             m_health = Mathf.Clamp(m_health, 0, m_maxHealth);
-            if (m_health <= 0) Die(); else DarkenColor();
+            if (m_health <= 0) Die(); else LightenColor();
         }
     }
     private SpriteRenderer m_sprite;
@@ -61,20 +61,15 @@ public class EntityBehavior : MonoBehaviour
 
     protected virtual void DarkenColor()
     {
-        float darken = HandleDarkening();
+        float darken = 1f - (0.15f * P_Health);
         m_sprite.color *= darken;
         m_sprite.color = new(m_sprite.color.r, m_sprite.color.g, m_sprite.color.b, a: 1f);
     }
 
-    private float HandleDarkening()
+    protected virtual void LightenColor()
     {
-        float darken = P_Health switch
-        {
-            3 => 0.9f,
-            2 => 0.7f,
-            1 => 0.5f,
-            _ => 1
-        };
-        return darken;
+        float lighten = 1f + (0.15f * P_Health);
+        m_sprite.color *= lighten;
+        m_sprite.color = new(m_sprite.color.r, m_sprite.color.g, m_sprite.color.b, a: 1f);
     }
 }
