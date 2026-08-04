@@ -5,19 +5,8 @@ public class BrickBehavior : EntityBehavior
 {
     protected BrickType m_brickType = BrickType.Basic;
     public static event Action<BrickType> OnDeath;
+    protected override Color P_Color { get; set; } = new(0.2f, 1, 0.2f, 1);
 
-    protected override void Start()
-    {
-        base.Start();
-    }
-
-    /*protected virtual void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            TakeDamage(hitter: collision);
-        }
-    }*/
 
     protected override void Die()
     {
@@ -25,8 +14,9 @@ public class BrickBehavior : EntityBehavior
         base.Die();
     }
 
-    public void Initialize()
+    public virtual void Initialize(int health)
     {
-        InitializeColor(0.2f, 1, 0.2f);
+        P_MaxHealth = health;
+        InitializeColor();
     }
 }

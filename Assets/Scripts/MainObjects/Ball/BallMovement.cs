@@ -15,16 +15,17 @@ public class BallMovement : MonoBehaviour
     private void FixedUpdate()
     {
 
-        float sizeAdjustment = transform.localScale.x / 2;
+        float sizeAdjustmentX = transform.localScale.x / 2;
+        float sizeAdjustmentY = transform.localScale.y / 2;
 
         m_rigidBody2d.position = new(
-            Mathf.Clamp(m_rigidBody2d.transform.position.x, ScreenBounds.Left + sizeAdjustment,
-                        ScreenBounds.Right - sizeAdjustment),
-            Mathf.Clamp(m_rigidBody2d.transform.position.y, ScreenBounds.Bottom + sizeAdjustment - (sizeAdjustment * 2),
-                        ScreenBounds.Top - sizeAdjustment - (sizeAdjustment * 2)));
+            Mathf.Clamp(m_rigidBody2d.transform.position.x, ScreenBounds.Left + sizeAdjustmentX,
+                        ScreenBounds.Right - sizeAdjustmentX),
+            Mathf.Clamp(m_rigidBody2d.transform.position.y, ScreenBounds.Bottom + sizeAdjustmentY - (sizeAdjustmentX * 2),
+                        ScreenBounds.Top - sizeAdjustmentY - (sizeAdjustmentY * 2)));
 
-        if (m_rigidBody2d.position.x >= ScreenBounds.Right - sizeAdjustment |
-            m_rigidBody2d.position.x <= ScreenBounds.Left + sizeAdjustment) {
+        if (m_rigidBody2d.position.x >= ScreenBounds.Right - sizeAdjustmentX |
+            m_rigidBody2d.position.x <= ScreenBounds.Left + sizeAdjustmentX) {
             Bounce(new(-m_rigidBody2d.linearVelocityX, m_rigidBody2d.linearVelocityY));
             m_previousVelocity = m_rigidBody2d.linearVelocity;
         }

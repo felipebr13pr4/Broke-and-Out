@@ -1,8 +1,13 @@
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class PlayerBehavior : EntityBehavior
 {
+    private void Start()
+    {
+        P_MaxHealth = 5;
+        InitializeColor(reverse: true);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Brick"))
@@ -12,6 +17,7 @@ public class PlayerBehavior : EntityBehavior
             print(P_Health);
         }
     }
+
 
     protected override void Die()
     {

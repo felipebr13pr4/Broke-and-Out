@@ -15,13 +15,13 @@ public class BallBehavior : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float sizeAdjustment = transform.localScale.x / 2;
+        float sizeAdjustmentY = transform.localScale.y / 2;
 
-        if (!m_isRepositioning && m_rigidBody2d.position.y <= ScreenBounds.Bottom - sizeAdjustment)
+        if (!m_isRepositioning && m_rigidBody2d.position.y <= ScreenBounds.Bottom - sizeAdjustmentY)
             StartCoroutine(PlayerReposition());
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Brick"))
         {
@@ -29,6 +29,7 @@ public class BallBehavior : MonoBehaviour
             brick.TakeDamage(1);
         }
     }
+
     private IEnumerator PlayerReposition()
     {
         print("repositioning");

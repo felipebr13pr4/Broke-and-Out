@@ -64,7 +64,7 @@ public class BrickSpawnerBehavior : MonoBehaviour
     {
         if (type == BrickType.Ranged)
         {
-            float fireRateRandomness = Random.Range(1f, 10f);
+            float fireRateRandomness = Random.Range(4f, 10f);
             m_rowData[i].P_BrickData[j].P_RangedData.P_FireRate = fireRateRandomness;
         } else
         {
