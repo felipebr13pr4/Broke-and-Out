@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Transform))]
-public class BulletsHolder : MonoBehaviour
+public class CreationsHolder : MonoBehaviour
 {
     public static Transform S_Transform;
 

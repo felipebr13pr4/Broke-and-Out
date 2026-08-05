@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Brick
+  - Player Hitbox
   layers:
   - Default
   - TransparentFX

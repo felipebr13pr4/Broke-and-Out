@@ -22,7 +22,8 @@ public class PlayerMovement : MonoBehaviour
         m_rigidBody2d.linearVelocity = new Vector2(m_moveDir * m_speed, 0);
 
         Vector3 pos = m_rigidBody2d.transform.position;
-        float sizeAdjustmentX = transform.localScale.x / 2;
+        SpriteRenderer spriteRen = GetComponentInChildren<SpriteRenderer>();
+        float sizeAdjustmentX = spriteRen.size.x / 2;
         pos.x = Mathf.Clamp(pos.x, ScreenBounds.Left + sizeAdjustmentX,
                             ScreenBounds.Right - sizeAdjustmentX);
         m_rigidBody2d.position = pos;

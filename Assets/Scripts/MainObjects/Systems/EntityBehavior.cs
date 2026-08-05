@@ -15,14 +15,15 @@ public class EntityBehavior : MonoBehaviour
             m_lastHealt = m_health;
             m_health = value;
             m_health = Mathf.Clamp(m_health, 0, m_maxHealth);
-            if (m_health <= 0) Die(); else ChangeColor();
+            if (m_health <= 0 & !m_isDead) Die(); else ChangeColor();
         }
     }
-    private SpriteRenderer m_sprite;
-    public SpriteRenderer P_Sprite => m_sprite;
+    private SpriteRenderer m_spriteRen;
+    public SpriteRenderer P_SpriteRen => m_spriteRen;
     protected ColorStatesData m_colorData;
     protected virtual Color P_Color { get; set; } = Color.white;
-    protected bool isReverseBrightening;
+    protected bool m_isReverseBrightening;
+    private bool m_isDead = false;
 
     public void TakeDamage(int damage = 0, EntityBehavior hitter = null, bool takeAndDeal = false)
     {
@@ -37,24 +38,26 @@ public class EntityBehavior : MonoBehaviour
 
     protected virtual void Die()
     {
+        if (m_isDead) return;
+        m_isDead = true;
         gameObject.SetActive(false);
     }
 
     protected void InitializeColor(float darken = 0.15f, bool reverse = false)
     {
-        m_sprite = GetComponentInChildren<SpriteRenderer>();
+        m_spriteRen = GetComponentInChildren<SpriteRenderer>();
 
         m_colorData = new(P_Color, P_Health, darken);
-        isReverseBrightening = reverse;
+        m_isReverseBrightening = reverse;
         ChangeColor();
     }
 
     protected void ChangeColor()
     {
         int index = 0;
-        if (isReverseBrightening) index = m_colorData.P_ColorsStates.Length - P_Health;
+        if (m_isReverseBrightening) index = m_colorData.P_ColorsStates.Length - P_Health;
         else index = P_Health-1;
-        print("iiindex: " + index);
-        m_sprite.color = m_colorData.P_ColorsStates[index];
+        if (P_Health <= 0) return;
+        m_spriteRen.color = m_colorData.P_ColorsStates[index];
     }
 }

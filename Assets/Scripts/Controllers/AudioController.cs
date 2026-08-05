@@ -45,7 +45,6 @@ public class AudioController : MonoBehaviour
     {
         float pitch = data.P_Pitch;
         if (data.P_IsPitchRandom) pitch = Random.Range(data.P_Min, data.P_Max);
-        print("pitch: " + pitch);
         m_audioSource.pitch = pitch;
         m_audioSource.PlayOneShot(data.P_Clip, m_audioVolume);
     }

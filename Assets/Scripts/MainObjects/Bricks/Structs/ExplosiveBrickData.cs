@@ -1,4 +1,6 @@
+using UnityEngine;
+
 public struct ExplosiveBrickData
 {
-    public int P_ExplosionRange;
+    public Vector2 P_ExplosionRange;
 }

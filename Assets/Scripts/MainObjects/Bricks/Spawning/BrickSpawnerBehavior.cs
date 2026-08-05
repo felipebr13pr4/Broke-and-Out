@@ -41,9 +41,14 @@ public class BrickSpawnerBehavior : MonoBehaviour
                 m_rowData[i].P_BrickData[j].P_Health = healthRandomness;
                 print(m_rowData[i].P_BrickData[j].P_Health + " health");
 
-                int typeRandomness = Random.Range(0, 3);
+                //All Random
+                /*int typeRandomness = Random.Range(0, 3);
                 BrickType type = typeRandomness == 0 ? BrickType.Basic :
                                  typeRandomness == 1 ? BrickType.Ranged : BrickType.Explosive;
+                m_rowData[i].P_BrickData[j].P_BrickType = type;*/
+
+                //Only Explosion
+                BrickType type = BrickType.Explosive;
                 m_rowData[i].P_BrickData[j].P_BrickType = type;
 
                 if (type != BrickType.Basic) HandleSpecialBrick(type, i, j);
@@ -68,8 +73,8 @@ public class BrickSpawnerBehavior : MonoBehaviour
             m_rowData[i].P_BrickData[j].P_RangedData.P_FireRate = fireRateRandomness;
         } else
         {
-            int explosionRandomness = Random.Range(1, 3);
-            print("random explo: " + explosionRandomness);
+            Vector2 explosionRandomness = new(Random.Range(3, 6), Random.Range(2, 5));
+            print("random explosion: " + explosionRandomness);
             m_rowData[i].P_BrickData[j].P_ExplosiveData.P_ExplosionRange = explosionRandomness;
         }
     }

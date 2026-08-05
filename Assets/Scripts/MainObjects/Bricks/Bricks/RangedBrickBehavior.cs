@@ -29,7 +29,7 @@ public class RangedBrickBehavior : BrickBehavior
             m_bullets[i] = new GameObject("Bullet Brick");
             m_bullets[i].AddComponent<BulletBrick>();
             BulletBrick bullet = m_bullets[i].GetComponent<BulletBrick>();
-            bullet.InitializeBullet(P_Sprite.sprite, transform);
+            bullet.InitializeBullet(P_SpriteRen.sprite, transform);
         }
         while (true)
         {

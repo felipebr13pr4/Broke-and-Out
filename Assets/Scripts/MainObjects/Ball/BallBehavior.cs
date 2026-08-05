@@ -32,7 +32,6 @@ public class BallBehavior : MonoBehaviour
 
     private IEnumerator PlayerReposition()
     {
-        print("repositioning");
         m_isRepositioning = true;
 
         if (m_repositioningArea.P_IsBrickinside) { VoidRepositioning(); yield break; }
