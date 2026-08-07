@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4324781058993697188}
   - component: {fileID: 505575381741167829}
   - component: {fileID: -7591080307791504859}
+  - component: {fileID: 2963525593140735652}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -194,3 +195,580 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d9a629b144753148910831f9aa690be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TesterController
+--- !u!114 &2963525593140735652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6811808609328694500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 935d3ae9afceef34789d7de71f5d8d06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelController
+  m_levels:
+  - P_Rows:
+    - P_ShouldBrickActive: 0000000000000000000000
+      P_BrickData:
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+    - P_ShouldBrickActive: 0000000000000000000000
+      P_BrickData:
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+    - P_ShouldBrickActive: 0000000000000000000000
+      P_BrickData:
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+    - P_ShouldBrickActive: 0000000000000000000000
+      P_BrickData:
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+    - P_ShouldBrickActive: 0000000000000000000000
+      P_BrickData:
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+      - P_Health: 1
+        P_BrickType: 0
+        P_TimeToMove: 3
+        P_DistanceToMove: 1
+        P_RangedData:
+          P_FireRate: 5
+        P_ExplosiveData:
+          P_ExplosionRange: {x: 3, y: 3}
+  m_safetyLockFromDefaultAll: 1
+  m_targetLevel: 0
+  m_levelString: '--ACTIVE--
+
+    [t][t][t][t][t][t][t][t][t][t][t]
+
+    [f][f][f][f][f][f][f][f][f][f][f]
+
+    [f][t][f][t][f][t][f][t][f][t][f]
+
+    [t][f][t][f][t][f][t][f][t][f][t]
+
+    [f][f][t][t][f][t][t][f][t][t][f]
+
+    --ACTIVE--
+
+
+    --HEALTH--
+
+    [1][1][1][1][1][1][1][1][1][1][1]
+
+    [2][2][2][2][2][2][2][2][2][2][2]
+
+    [3][3][3][3][3][3][3][3][3][3][3]
+
+    [4][4][4][4][4][4][4][4][4][4][4]
+
+    [5][5][5][5][5][5][5][5][5][5][5]
+
+    --HEALTH--
+
+
+
+    --TIME--
+
+    [1.2][1][1][1][1][1][1][1][1][1][1]
+
+    [2][2][2][2][2][2][2][2][2][2][2]
+
+    [3][3][3][3][3][3][3][3][3][3][3]
+
+    [4][4][4][4][4][4][4][4][4][4][4]
+
+    [5][5][5][5][5][5][5][5][5][5][5]
+
+    --TIME--
+
+
+
+    --DISTANCE--
+
+    [1.2][1][1][1][1][1][1][1][1][1][1]
+
+    [2][2][2][2][2][2][2][2][2][2][2]
+
+    [3][3][3][3][3][3][3][3][3][3][3]
+
+    [4][4][4][4][4][4][4][4][4][4][4]
+
+    [5][5][5][5][5][5][5][5][5][5][5]
+
+    --DISTANCE--
+
+
+
+    --TYPE--
+
+    [B][E][R][B][E][R][B][E][R][B][E]
+
+    [E][R][B][E][R][B][E][R][B][E][R]
+
+    [R][B][E][R][B][E][R][B][E][R][B]
+
+    [R][E][B][R][E][B][R][E][B][R][E]
+
+    [B][R][E][B][R][E][B][R][E][B][R]
+
+    --TYPE--
+
+
+
+    --RANGED
+    VALUE--
+
+    [1.2][1][1][1][1][1][1][1][1][1][1]
+
+    [2][2][2][2][2][2][2][2][2][2][2]
+
+    [3][3][3][3][3][3][3][3][3][3][3]
+
+    [4][4][4][4][4][4][4][4][4][4][4]
+
+    [5][5][5][5][5][5][5][5][5][5][5]
+
+    --RANGED
+    VALUE--
+
+
+
+    --EXPLOSION VALUE--
+
+    [1.2,1][1,1][1,1][1,1][1,1][1,1][1,1][1,1][1,1][1,1][1,1]
+
+    [2,2][2,2][2,2][2,2][2,2][2,2][2,2][2,2][2,2][2,2][2,2]
+
+    [3,3][3,3][3,3][3,3][3,3][3,3][3,3][3,3][3,3][3,3][3,3]
+
+    [4,4][4,4][4,4][4,4][4,4][4,4][4,4][4,4][4,4][4,4][4,4]
+
+    [5,5][5,5][5,5][5,5][5,5][5,5][5,5][5,5][5,5][5,5][5,5]
+
+    --EXPLOSION
+    VALUE--'

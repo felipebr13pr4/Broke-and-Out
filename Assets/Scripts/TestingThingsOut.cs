@@ -1,0 +1,266 @@
+using System.Collections.Generic;
+using System.Globalization;
+using UnityEngine;
+
+public class TestingThingsOut : MonoBehaviour
+{
+    // This script is just for me to test some basic things.
+
+    //-----
+    // This part i had assistance of Claude, more as a teacher for learning the basics
+    // of string separations.
+    private string tesTY = "[1][1][2][8][5][1][8]";
+
+    [ContextMenu("Test")]
+    private void Test()
+    {
+        List<int> cleaned = new List<int>();
+        string[] tempString = tesTY.Split('[');
+        print(tempString.Length); 
+        for (int i = 0; i < tempString.Length; i++) {
+            if (tempString[i] == "") continue;
+            cleaned.Add(int.Parse(tempString[i].Split(']')[0]));
+        }
+        for (int i = 0; i < cleaned.Count; i++)
+        {
+            print(cleaned[i]);
+        }
+    }
+
+    [TextArea(5, 1000)]
+    [SerializeField]
+    private string test = "---int---\n" +
+        "[1][1][2][8][5][1][8]\n" +
+        "---int---\n" +
+        "---float---\n" +
+        "[3.3f][2.1f][7.56f][4.32f]\n" +
+        "---float---";
+
+    [ContextMenu("Test 2")]
+    private void Test2()
+    {
+        string[] tempString = test.Split("\n");
+        string currentType = "";
+        print("tempString lenght: " + tempString.Length);
+        for (int i = 0; i < tempString.Length; i++)
+        {
+            string identify = tempString[i].StartsWith('[') ? "DATA: " : "MARKER: ";
+            print(identify + tempString[i]);
+            if (tempString[i].StartsWith('-'))
+            {
+                currentType = tempString[i].Trim('-');
+            }
+            print(currentType);
+        }
+    }
+
+    //
+    //-----
+    // From here on, this is without direct help.
+    // Just to rationalize a simpler version of the longer needed piece.
+    // 
+    // Writing the following after having finished this system:
+    // So, this before was just the ACTIVE category, i slowly 
+    // added the others and made sure they worked properly.
+    // I'll keep this here for documentations purposes.
+    // And i had Claude take a quick look for any errors and it only found one.
+    // This is also good to test out in prints without fully commiting to the actual thing.
+
+
+    [TextArea(5, 1000)]
+    [SerializeField] private string m_levelString =
+    "--ACTIVE--\n" +
+"[t][t][t][t][t][t][t][t][t][t][t]\n" +
+"[f][f][f][f][f][f][f][f][f][f][f]\n" +
+"[f][t][f][t][f][t][f][t][f][t][f]\n" +
+"[t][f][t][f][t][f][t][f][t][f][t]\n" +
+"[f][f][t][t][f][t][t][f][t][t][f]\n" +
+    "--ACTIVE--" +
+        "\n\n" +
+    "--HEALTH--\n" +
+"[1][1][1][1][1][1][1][1][1][1][1]\n" +
+"[2][2][2][2][2][2][2][2][2][2][2]\n" +
+"[3][3][3][3][3][3][3][3][3][3][3]\n" +
+"[4][4][4][4][4][4][4][4][4][4][4]\n" +
+"[5][5][5][5][5][5][5][5][5][5][5]\n" +
+    "--HEALTH--\n" +
+        "\n\n" +
+    "--TIME--\n" +
+"[1.2][1][1][1][1][1][1][1][1][1][1]\n" +
+"[2][2][2][2][2][2][2][2][2][2][2]\n" +
+"[3][3][3][3][3][3][3][3][3][3][3]\n" +
+"[4][4][4][4][4][4][4][4][4][4][4]\n" +
+"[5][5][5][5][5][5][5][5][5][5][5]\n" +
+    "--TIME--\n" +
+        "\n\n" +
+    "--DISTANCE--\n" +
+"[1.2][1][1][1][1][1][1][1][1][1][1]\n" +
+"[2][2][2][2][2][2][2][2][2][2][2]\n" +
+"[3][3][3][3][3][3][3][3][3][3][3]\n" +
+"[4][4][4][4][4][4][4][4][4][4][4]\n" +
+"[5][5][5][5][5][5][5][5][5][5][5]\n" +
+    "--DISTANCE--\n" +
+        "\n\n" +
+    "--TYPE--\n" +
+"[B][E][R][B][E][R][B][E][R][B][E]\n" +
+"[E][R][B][E][R][B][E][R][B][E][R]\n" +
+"[R][B][E][R][B][E][R][B][E][R][B]\n" +
+"[R][E][B][R][E][B][R][E][B][R][E]\n" +
+"[B][R][E][B][R][E][B][R][E][B][R]\n" +
+    "--TYPE--\n" +
+        "\n\n" +
+    "--RANGED VALUE--\n" +
+"[1.2][1][1][1][1][1][1][1][1][1][1]\n" +
+"[2][2][2][2][2][2][2][2][2][2][2]\n" +
+"[3][3][3][3][3][3][3][3][3][3][3]\n" +
+"[4][4][4][4][4][4][4][4][4][4][4]\n" +
+"[5][5][5][5][5][5][5][5][5][5][5]\n" +
+    "--RANGED VALUE--\n" +
+        "\n\n" +
+    "--EXPLOSION VALUE--\n" +
+"[1.2,1][1,1][1,1][1,1][1,1][1,1][1,1][1,1][1,1][1,1][1,1]\n" +
+"[2,2][2,2][2,2][2,2][2,2][2,2][2,2][2,2][2,2][2,2][2,2]\n" +
+"[3,3][3,3][3,3][3,3][3,3][3,3][3,3][3,3][3,3][3,3][3,3]\n" +
+"[4,4][4,4][4,4][4,4][4,4][4,4][4,4][4,4][4,4][4,4][4,4]\n" +
+"[5,5][5,5][5,5][5,5][5,5][5,5][5,5][5,5][5,5][5,5][5,5]\n" +
+    "--EXPLOSION VALUE--";
+    [SerializeField] private LevelData levellll;
+    private int currentRow;
+
+    [ContextMenu("Test 3")]
+    private void Test3()
+    {
+        levellll = new LevelData();
+        levellll.Default();
+        for (int  i = 0; i < 5; i++)
+            levellll.P_Rows[i].P_ShouldBrickActive = new bool[11];
+        string[] tempString = m_levelString.Split(new[] { "\r\n", "\n" }, System.StringSplitOptions.None); ;
+        string currentType = "";
+        print("tempString lenght: " + tempString.Length);
+        for (int i = 0; i < tempString.Length; i++)
+        {
+            if (tempString[i] == "") continue;
+            string identify = tempString[i].StartsWith('[') ? "DATA: " : "MARKER: ";
+            print(identify + tempString[i]);
+
+            if (tempString[i].StartsWith('-')) {
+                currentType = tempString[i].Trim('-');
+                currentRow = 0; }
+
+            if (identify == "DATA: ") {
+                HandleType(currentType, i, currentRow, tempString[i]);
+                currentRow += 1; }
+        }
+    }
+
+    private void HandleType(string type, int index, int row, string data)
+    {
+        List<string> result = new List<string>();
+        string[] tempData;
+        tempData = data.Split('[');
+        for (int i = 0; i < tempData.Length; i++)
+        {
+            if (tempData[i] == "") continue;
+            result.Add(tempData[i].Split(']')[0]);
+        }
+        print("result count: " + result.Count);
+        if (result.Count != 11)
+        {
+            ErrorLogger.LogError("Data Count", result.Count.ToString());
+            if (result.Count < 11) { for (int i = result.Count; i < 11; i++) result.Add(""); }
+            if (result.Count > 11) { for (int i = result.Count-1; i > 11; i--) {
+                    print("index: " + i); result.RemoveAt(i); } }
+        }
+        switch (type)
+        {
+            case "ACTIVE":
+                for (int i = 0; i < 11; i++)
+                {
+                    if (result[i] != "T" & result[i] != "F")
+                        ErrorLogger.LogError("Active", result[i]);
+                    levellll.P_Rows[row].P_ShouldBrickActive[i] = result[i] == "T";
+                    print(levellll.P_Rows[row].P_ShouldBrickActive[i]);
+                }
+                return;
+
+            case "HEALTH":
+                for (int i = 0; i < 11; i++)
+                {
+                    if (!int.TryParse(result[i], out _))
+                        { ErrorLogger.LogError("Health", result[i]); result[i] = "1"; }
+                    levellll.P_Rows[row].P_BrickData[i].P_Health = int.Parse(result[i]);
+                    print(levellll.P_Rows[row].P_BrickData[i].P_Health);
+                }
+                return;
+
+            case "TIME":
+                for (int i = 0; i < 11; i++)
+                {
+                    if (!float.TryParse(result[i], out _))
+                    { ErrorLogger.LogError("Move Time", result[i]); result[i] = "3"; }
+                    levellll.P_Rows[row].P_BrickData[i].P_TimeToMove = float.Parse(result[i], CultureInfo.InvariantCulture);
+                    print(levellll.P_Rows[row].P_BrickData[i].P_TimeToMove);
+                }
+                return;
+
+            case "DISTANCE":
+                for (int i = 0; i < 11; i++)
+                {
+                    if (!float.TryParse(result[i], out _))
+                    { ErrorLogger.LogError("Move Distance", result[i]); result[i] = "1"; }
+                    levellll.P_Rows[row].P_BrickData[i].P_DistanceToMove = float.Parse(result[i], CultureInfo.InvariantCulture);
+                    print(levellll.P_Rows[row].P_BrickData[i].P_DistanceToMove);
+                }
+                return;
+
+            case "TYPE":
+                for (int i = 0; i < 11; i++)
+                {
+                    if (result[i] != "B" & result[i] != "R" & result[i] != "E")
+                        ErrorLogger.LogError("Brick Type", result[i]);
+                    levellll.P_Rows[row].P_BrickData[i].P_BrickType = result[i] switch
+                    {
+                        "B" => BrickType.Basic,
+                        "R" => BrickType.Ranged,
+                        "E" => BrickType.Explosive,
+                        _ => BrickType.Basic
+                    };
+                    print(levellll.P_Rows[row].P_BrickData[i].P_BrickType);
+                }
+                return;
+
+            case "RANGED VALUE":
+                for (int i = 0; i < 11; i++)
+                {
+                    if (!float.TryParse(result[i], out _))
+                        { ErrorLogger.LogError("Ranged Firerate", result[i]); result[i] = "3"; }
+                    levellll.P_Rows[row].P_BrickData[i].P_RangedData.P_FireRate = float.Parse(result[i], CultureInfo.InvariantCulture);
+                    print(levellll.P_Rows[row].P_BrickData[i].P_RangedData.P_FireRate);
+                }
+                return;
+
+            case "EXPLOSION VALUE":
+                tempData = new string[22];
+                Vector2 vector = new();
+                for (int i = 0; i < 11; i++)
+                {
+                    tempData = new string[2];
+                    tempData = result[i].Split(',');
+                    if (result[i] == "") tempData = new string[2];
+                    if (!float.TryParse(tempData[0], out _) | !float.TryParse(tempData[1], out _))
+                        { ErrorLogger.LogError("Explosion Range", (tempData[0] + " " + tempData[1]));
+                        tempData = new string[2]; tempData[0] = "3"; tempData[1] = "3"; }
+
+                    vector.x = float.Parse(tempData[0], CultureInfo.InvariantCulture);
+                    vector.y = float.Parse(tempData[1], CultureInfo.InvariantCulture);
+                    levellll.P_Rows[row].P_BrickData[i].P_ExplosiveData.P_ExplosionRange = vector;
+                    print(levellll.P_Rows[row].P_BrickData[i].P_ExplosiveData.P_ExplosionRange);
+                }
+                return;
+
+            default:
+                ErrorLogger.LogError("Marker", type);
+                return;
+        }
+    }
+}
