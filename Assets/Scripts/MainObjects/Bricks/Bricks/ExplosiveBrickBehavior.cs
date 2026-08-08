@@ -7,6 +7,7 @@ public class ExplosiveBrickBehavior : BrickBehavior
     protected override Color P_Color { get; set; } = new(1, 0.2f, 0.2f, 1);
     private GameObject m_explosionObj;
     private Explosion m_explosion;
+    protected override BrickType P_BrickType { get; set; } = BrickType.Explosive;
 
     public override void Initialize(int health)
     {

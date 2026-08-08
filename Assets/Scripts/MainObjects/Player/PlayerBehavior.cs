@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class PlayerBehavior : EntityBehavior
 {
+    public static event Action OnDeath;
+
     private void Start()
     {
         P_MaxHealth = 5;
@@ -18,10 +21,10 @@ public class PlayerBehavior : EntityBehavior
         }
     }
 
-
     protected override void Die()
     {
         // TODO
+        OnDeath?.Invoke();
         base.Die();
     }
 }

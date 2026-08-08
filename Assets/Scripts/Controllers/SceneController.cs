@@ -19,7 +19,15 @@ public class SceneController : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += ResetThings;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= ResetThings;
+    }
 
     public void LoadScene(SceneType type)
     {
@@ -30,16 +38,18 @@ public class SceneController : MonoBehaviour
             _ => "MainMenu",
         };
 
-        Time.timeScale = 1;
-
         SceneManager.LoadScene(sceneToLoad);
     }
 
     public void ReloadScene()
     {
-        Time.timeScale = 1;
-
         string currentScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentScene);
+    }
+
+    private void ResetThings(Scene scene, LoadSceneMode mode)
+    {
+        Time.timeScale = 1;
+        LevelController.Instance.P_RowsCleared = 0;
     }
 }

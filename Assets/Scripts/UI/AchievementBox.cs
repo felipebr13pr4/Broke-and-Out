@@ -20,6 +20,7 @@ public class AchievementBox : MonoBehaviour
 
         int amount = CheckWhichAmountByType(m_type);
 
+        m_nameText.text = m_name;
         m_numberText.text = m_hasAchieved ?
                             m_reqAmount.ToString() + " / " + m_reqAmount.ToString() :
                             amount.ToString() + " / " + m_reqAmount.ToString();
@@ -35,6 +36,13 @@ public class AchievementBox : MonoBehaviour
     {
         int amount = type switch
         {
+            AchievementType.BrickBroken => DataController.Instance.P_BrickBroken,
+            AchievementType.TimesKilled => DataController.Instance.P_TimesKilled,
+            AchievementType.DamageTaken => DataController.Instance.P_DamageTaken,
+            AchievementType.DamageDealt => DataController.Instance.P_DamageDealt,
+            AchievementType.BasicBricksBroken => DataController.Instance.P_BasicBricksBroken,
+            AchievementType.RangedBricksBroken => DataController.Instance.P_RangedBricksBroken,
+            AchievementType.ExplosiveBricksBroken => DataController.Instance.P_ExplosiveBricksBroken,
             _ => 0,
         };
         return amount;

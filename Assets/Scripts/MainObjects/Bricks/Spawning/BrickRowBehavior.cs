@@ -17,13 +17,44 @@ public class BrickRowBehavior : MonoBehaviour
         StartCoroutine(HandleBricks());
     }
 
+    private void OnEnable()
+    {
+        BrickBehavior.OnDeath += CheckIfCleared;
+    }
+
+    private void OnDisable()
+    {
+        BrickBehavior.OnDeath -= CheckIfCleared;
+    }
+
+    private void CheckIfCleared(BrickType type) => StartCoroutine(HandleIfCleared());
+
+    private IEnumerator HandleIfCleared()
+    {
+        yield return null;
+        if (!m_isLocked)
+        {
+            bool isCleared = false;
+            int clearedBricks = 0;
+            for (int i = 0; i < m_bricks.Length; i++)
+            {
+                clearedBricks += m_bricks[i].gameObject.activeInHierarchy ? 0 : 1;
+            }
+            if (clearedBricks >= 11)
+            {
+                LevelController.Instance.P_RowsCleared += 1;
+                isCleared = true;
+            }
+            m_isLocked = isCleared;
+        }
+    }
+
     private IEnumerator HandleBricks()
     {
         while (m_isLocked)
         {
             yield return null;
         }
-        print("test 2");
         yield return null;
         for (int i = 0; i < m_bricks.Length; i++)
         {

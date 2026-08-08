@@ -37,10 +37,19 @@ public class SavingController : MonoBehaviour
     {
         Save();
         SavePlayerPrefs();
+        PlayerPrefs.Save();
     }
 
     private void Save()
     {
+        PlayerPrefs.SetInt("Brick Broken", DataController.Instance.P_BrickBroken);
+        PlayerPrefs.SetInt("Times Killed", DataController.Instance.P_TimesKilled);
+        PlayerPrefs.SetInt("Damage Taken", DataController.Instance.P_DamageTaken);
+        PlayerPrefs.SetInt("Damage Dealt", DataController.Instance.P_DamageDealt);
+        PlayerPrefs.SetInt("Basic Bricks Broken", DataController.Instance.P_BasicBricksBroken);
+        PlayerPrefs.SetInt("Ranged Bricks Broken", DataController.Instance.P_RangedBricksBroken);
+        PlayerPrefs.SetInt("Explosive Bricks Broken", DataController.Instance.P_ExplosiveBricksBroken);
+        PlayerPrefs.SetInt("Current Level", DataController.Instance.P_CurrentLevel);
     }
 
     private void SavePlayerPrefs()

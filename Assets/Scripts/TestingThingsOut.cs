@@ -263,4 +263,18 @@ public class TestingThingsOut : MonoBehaviour
                 return;
         }
     }
+
+    [ContextMenu("Test 4")]
+    private void Test4()
+    {
+        print(LevelController.Instance.P_Levels.Length);
+        for (int i = 0; i < LevelController.Instance.P_Levels.Length; i++)
+            print(LevelController.Instance.P_Levels[0]);
+    }
+
+    [ContextMenu("Test 5")]
+    private void Test5()
+    {
+        print(Application.persistentDataPath);
+    }
 }

@@ -1,15 +1,20 @@
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using UnityEngine;
 
 public class LevelController : MonoBehaviour
 {
     [SerializeField] private LevelData[] m_levels;
+    public LevelData[] P_Levels => m_levels;
     [SerializeField] private bool m_safetyLockFromDefaultAll = true;
     [SerializeField] private int m_targetLevel = 0;
     [TextArea(5,1000)]
     [SerializeField] private string m_levelString;
-    private int currentRow;
+    private int m_currentRow;
+    private bool m_firstTime = true;
+    private int m_rowsCleared;
+    public int P_RowsCleared { get => m_rowsCleared; set => m_rowsCleared = value; }
 
     public static LevelController Instance { get; private set; }
     private void Awake()
@@ -25,6 +30,19 @@ public class LevelController : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    private void Start()
+    {
+        if (m_firstTime)
+        {
+            for (int i = 0; i < m_levels.Length; i++)
+            {
+                string json = JsonUtility.ToJson(m_levels[i], true);
+                File.WriteAllText(Application.persistentDataPath + $"/Level{i}.json", json);
+                print(json);
+            }
+            m_firstTime = false;
+        }
+    }
 
     [ContextMenu("Default ALL Levels")]
     private void InitializeDefaultLevels()
@@ -50,11 +68,11 @@ public class LevelController : MonoBehaviour
     {
         m_levels[m_targetLevel] = new LevelData();
         m_levels[m_targetLevel].Default();
-        for (int i = 0; i < 5; i++)
-            m_levels[m_targetLevel].P_Rows[i].P_ShouldBrickActive = new bool[11];
+
         string[] tempString = m_levelString.Split(new[] { "\r\n", "\n" }, System.StringSplitOptions.None); ;
         string currentType = "";
         print("tempString lenght: " + tempString.Length);
+        
         for (int i = 0; i < tempString.Length; i++)
         {
             if (tempString[i] == "") continue;
@@ -64,13 +82,13 @@ public class LevelController : MonoBehaviour
             if (tempString[i].StartsWith('-'))
             {
                 currentType = tempString[i].Trim('-');
-                currentRow = 0;
+                m_currentRow = 4;
             }
 
             if (identify == "DATA: ")
             {
-                HandleType(currentType, i, currentRow, tempString[i]);
-                currentRow += 1;
+                HandleType(currentType, i, m_currentRow, tempString[i]);
+                m_currentRow -= 1;
             }
         }
     }

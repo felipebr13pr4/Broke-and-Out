@@ -7,6 +7,7 @@ public class RangedBrickBehavior : BrickBehavior
     private GameObject[] m_bullets;
     private readonly int m_maxBullets = 6;
     protected override Color P_Color { get; set; } = new(1, 1, 0.2f, 1);
+    protected override BrickType P_BrickType { get; set; } = BrickType.Ranged;
 
     public override void Initialize(int health)
     {

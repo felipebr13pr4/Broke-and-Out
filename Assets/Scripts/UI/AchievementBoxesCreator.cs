@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class AchievementBoxSpawner : MonoBehaviour
+public class AchievementBoxesCreator : MonoBehaviour
 {
     [SerializeField] private BoxesToSpawn[] m_boxes;
     [SerializeField] private GameObject m_boxPrefab;

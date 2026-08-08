@@ -5,9 +5,9 @@ using UnityEngine.UI;
 [RequireComponent(typeof(CanvasScaler))]
 public class PixelPerfectUIScale : MonoBehaviour
 {
-    private readonly int m_referenceWidth = 1080;
+    private readonly int m_referenceHeight = 1920;
     private CanvasScaler m_scaler;
-    private int m_lastWidth = 0;
+    private int m_lastHeight = 0;
 
     private void Start() 
     {
@@ -24,11 +24,11 @@ public class PixelPerfectUIScale : MonoBehaviour
 
     private void ChangeScale()
     {
-        if (Screen.width != m_lastWidth || Screen.fullScreenMode != FullScreenMode.FullScreenWindow)
+        if (Screen.height != m_lastHeight || Screen.fullScreenMode != FullScreenMode.FullScreenWindow)
         {
-            m_lastWidth = Screen.width;
-            float scale = (float)(Screen.width) / (float)(m_referenceWidth);
-            m_scaler.scaleFactor = Mathf.Clamp(scale, 0.21f, 0.7f);
+            m_lastHeight = Screen.height;
+            float scale = (float)(Screen.height) / (float)(m_referenceHeight);
+            m_scaler.scaleFactor = Mathf.Clamp(scale, 0.21f, 1f);
         }
     }
 }

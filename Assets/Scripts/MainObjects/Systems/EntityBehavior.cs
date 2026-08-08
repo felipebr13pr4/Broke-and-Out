@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Timeline;
 
@@ -24,12 +25,15 @@ public class EntityBehavior : MonoBehaviour
     protected virtual Color P_Color { get; set; } = Color.white;
     protected bool m_isReverseBrightening;
     private bool m_isDead = false;
+    public static event Action<GameObject, int> OnDamageTaken;
 
     public void TakeDamage(int damage = 0, EntityBehavior hitter = null, bool takeAndDeal = false)
     {
+        if (hitter != null) damage = hitter.P_Health;
+        OnDamageTaken?.Invoke(gameObject, damage);
         if (hitter != null)
         {
-            P_Health -= hitter.P_Health;
+            P_Health -= damage;
             if (takeAndDeal) hitter.TakeDamage(m_lastHealt);
             return;
         }
