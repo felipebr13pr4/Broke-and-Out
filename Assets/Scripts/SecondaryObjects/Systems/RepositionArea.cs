@@ -9,7 +9,6 @@ public class RepositionArea : MonoBehaviour
     {
         if (!collision.CompareTag("Brick")) return;
         m_isBrickInside = true;
-        print("m_isBrickInside = " + m_isBrickInside);
     }
 
     [ContextMenu("Adjust X Size To Camera")]

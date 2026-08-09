@@ -15,6 +15,14 @@ public class LevelController : MonoBehaviour
     private bool m_firstTime = true;
     private int m_rowsCleared;
     public int P_RowsCleared { get => m_rowsCleared; set => m_rowsCleared = value; }
+    private bool m_isRandomMode;
+    public bool P_IsRandomMode { get => m_isRandomMode; set => m_isRandomMode = value; }
+    private int m_currentLevel;
+    public int P_CurrentLevel
+    {
+        get => m_currentLevel;
+        set { value = Mathf.Clamp(value, 0, 40); m_currentLevel = value; }
+    }
 
     public static LevelController Instance { get; private set; }
     private void Awake()
@@ -32,6 +40,7 @@ public class LevelController : MonoBehaviour
 
     private void Start()
     {
+        P_CurrentLevel = PlayerPrefs.GetInt("Current Level");
         if (m_firstTime)
         {
             for (int i = 0; i < m_levels.Length; i++)
@@ -43,6 +52,18 @@ public class LevelController : MonoBehaviour
             m_firstTime = false;
         }
     }
+
+    private void OnEnable()
+    {
+        LevelButton.OnLevelChanged += ChangeLevel;
+    }
+
+    private void OnDisable()
+    {
+        LevelButton.OnLevelChanged -= ChangeLevel;
+    }
+    private void ChangeLevel(int level) => P_CurrentLevel = level;
+
 
     [ContextMenu("Default ALL Levels")]
     private void InitializeDefaultLevels()

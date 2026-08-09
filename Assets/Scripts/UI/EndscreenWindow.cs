@@ -32,9 +32,14 @@ public class EndscreenWindow : MonoBehaviour
     {
         yield return null;
         yield return null;
+        if (LevelController.Instance.P_RowsCleared == 5 & LevelController.Instance.P_IsRandomMode)
+        {
+            OpenEndscreen("Random Level complete!");
+            yield break;
+        }
         if (LevelController.Instance.P_RowsCleared == 5)
         {
-            OpenEndscreen($"Level {DataController.Instance.P_CurrentLevel + 1} complete!");
+            OpenEndscreen($"Level {LevelController.Instance.P_CurrentLevel + 1} complete!");
         }
     }
 

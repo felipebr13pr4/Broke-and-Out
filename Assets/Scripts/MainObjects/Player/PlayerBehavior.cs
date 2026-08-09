@@ -17,7 +17,6 @@ public class PlayerBehavior : EntityBehavior
         {
             TakeDamage(hitter: collision.gameObject.GetComponent<EntityBehavior>(),
                        takeAndDeal: true);
-            print(P_Health);
         }
     }
 

@@ -26,9 +26,12 @@ public class LevelButton : MonoBehaviour
 
     protected virtual void ChangeLevel()
     {
+        ChangeRandom();
         OnLevelChanged?.Invoke(m_assignedLevel);
         SceneController.Instance.ReloadScene();
     }
+
+    protected virtual void ChangeRandom() => LevelController.Instance.P_IsRandomMode = false;
 
     public void Initialize(int level)
     {

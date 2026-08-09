@@ -7,7 +7,6 @@ public class RowsManager : MonoBehaviour
     [SerializeField] private BrickRowBehavior[] m_rows;
     [SerializeField] private GameObject m_brickCurtain;
     private LevelData m_levelData;
-    private bool m_isRandomMode;
 
     private void Start()
     {
@@ -19,7 +18,7 @@ public class RowsManager : MonoBehaviour
         }
 
         string path = Application.persistentDataPath +
-            $"/Level{DataController.Instance.P_CurrentLevel}.json";
+            $"/Level{LevelController.Instance.P_CurrentLevel}.json";
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);
@@ -34,7 +33,7 @@ public class RowsManager : MonoBehaviour
     {
         yield return null;
 
-        if (m_isRandomMode) RandomBricks();
+        if (LevelController.Instance.P_IsRandomMode) RandomBricks();
 
         for (int i = 0; i < m_rows.Length; i++)
         {

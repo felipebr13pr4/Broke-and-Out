@@ -18,11 +18,6 @@ public class DataController : MonoBehaviour
     public int P_RangedBricksBroken => m_rangedBricksBroken;
     public int P_ExplosiveBricksBroken => m_explosiveBricksBroken;
 
-    private int m_currentLevel;
-    public int P_CurrentLevel { get => m_currentLevel;
-        set { value = Mathf.Clamp(value, 0, 40); m_currentLevel = value; }
-    }
-
 
     public static DataController Instance { get; private set; }
     private void Awake()
@@ -47,7 +42,6 @@ public class DataController : MonoBehaviour
         m_basicBricksBroken = PlayerPrefs.GetInt("Basic Bricks Broken");
         m_rangedBricksBroken = PlayerPrefs.GetInt("Ranged Bricks Broken");
         m_explosiveBricksBroken = PlayerPrefs.GetInt("Explosive Bricks Broken");
-        P_CurrentLevel = PlayerPrefs.GetInt("Current Level");
     }
 
     private void OnEnable()
@@ -55,7 +49,6 @@ public class DataController : MonoBehaviour
         BrickBehavior.OnDeath += HandleBrickStats;
         EntityBehavior.OnDamageTaken += HandleDamageStats;
         PlayerBehavior.OnDeath += HandleDeathStats;
-        LevelButton.OnLevelChanged += ChangeLevel;
     }
 
     private void OnDisable()
@@ -63,16 +56,14 @@ public class DataController : MonoBehaviour
         BrickBehavior.OnDeath -= HandleBrickStats;
         EntityBehavior.OnDamageTaken -= HandleDamageStats;
         PlayerBehavior.OnDeath -= HandleDeathStats;
-        LevelButton.OnLevelChanged -= ChangeLevel;
     }
 
     private void HandleBrickStats(BrickType type)
     {
         m_brickBroken += 1;
-        print("type: " + type);
 
         if (type == BrickType.Basic) m_basicBricksBroken += 1;
-        if (type == BrickType.Ranged) { print("type: " + type); m_rangedBricksBroken += 1; }
+        if (type == BrickType.Ranged) m_rangedBricksBroken += 1;
         if (type == BrickType.Explosive) m_explosiveBricksBroken += 1;
     }
 
@@ -84,5 +75,4 @@ public class DataController : MonoBehaviour
         if (receiver.GetComponent<BrickBehavior>() != null) m_damageDealt += damage;
     }
 
-    private void ChangeLevel(int level) => P_CurrentLevel = level;
 }

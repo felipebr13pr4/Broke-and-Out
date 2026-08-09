@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class QuickLevelChangeButton : LevelButton
 {
@@ -8,7 +6,7 @@ public class QuickLevelChangeButton : LevelButton
 
     protected override void ChangeLevel()
     {
-        int currentLevel = DataController.Instance.P_CurrentLevel;
+        int currentLevel = LevelController.Instance.P_CurrentLevel;
         m_assignedLevel = m_isIncreaser ? currentLevel+1 : currentLevel-1;
         base.ChangeLevel();
     }
