@@ -5,9 +5,9 @@ public class AudioController : MonoBehaviour
 {
     private float m_audioVolume = 1;
 
-    private AudioSource m_audioSource;
+    [SerializeField] private AudioSource m_audioSource;
+    [SerializeField] private AudioSource m_stoppableAudioSource;
 
-    public AudioSource P_AudioSource => m_audioSource;
     public float P_AudioVolume => m_audioVolume;
 
     public static AudioController Instance { get; private set; }
@@ -28,16 +28,18 @@ public class AudioController : MonoBehaviour
     private void OnEnable()
     {
         AudioHolder.OnAudio += PlayAudio;
+        AudioHolder.OnStoppableAudio += PlayStoppableAudio;
     }
 
     private void OnDisable()
     {
         AudioHolder.OnAudio -= PlayAudio;
+        AudioHolder.OnStoppableAudio -= PlayStoppableAudio;
     }
+    
 
     private void Start()
     {
-        m_audioSource = GetComponent<AudioSource>();
         m_audioVolume = PlayerPrefs.GetFloat("Volume", 1f);
     }
 
@@ -49,10 +51,13 @@ public class AudioController : MonoBehaviour
         m_audioSource.PlayOneShot(data.P_Clip, m_audioVolume);
     }
 
-    public void PlayAudio(AudioClip clip)
+    public void PlayStoppableAudio(AudioData data)
     {
-        m_audioSource.pitch = Random.Range(0.75f, 1.25f);
-        m_audioSource.PlayOneShot(clip, m_audioVolume);
+        float pitch = data.P_Pitch;
+        if (data.P_IsPitchRandom) pitch = Random.Range(data.P_Min, data.P_Max);
+        m_stoppableAudioSource.pitch = pitch;
+        m_stoppableAudioSource.Stop();
+        m_stoppableAudioSource.PlayOneShot(data.P_Clip, m_audioVolume);
     }
 
     public void SetAudio(float value)

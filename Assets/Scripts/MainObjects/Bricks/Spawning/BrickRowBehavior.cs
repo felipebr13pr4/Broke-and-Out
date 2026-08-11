@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class BrickRowBehavior : MonoBehaviour
     public RowData P_RowData { get => m_rowData; set => m_rowData = value; }
     private bool m_isLocked = true;
     public bool P_IsLocked { get => m_isLocked; set => m_isLocked = value; }
+    public static event Action OnRowClear;
 
     private void Awake() => m_bricks = GetComponentsInChildren<BricksMovement>();
 
@@ -20,13 +22,16 @@ public class BrickRowBehavior : MonoBehaviour
     private void OnEnable()
     {
         BrickBehavior.OnDeath += CheckIfCleared;
+        BricksMovement.OnPassScreenBounds += CheckIfCleared;
     }
 
     private void OnDisable()
     {
         BrickBehavior.OnDeath -= CheckIfCleared;
+        BricksMovement.OnPassScreenBounds -= CheckIfCleared;
     }
 
+    private void CheckIfCleared() => StartCoroutine(HandleIfCleared());
     private void CheckIfCleared(BrickType type) => StartCoroutine(HandleIfCleared());
 
     private IEnumerator HandleIfCleared()
@@ -45,6 +50,7 @@ public class BrickRowBehavior : MonoBehaviour
                 LevelController.Instance.P_RowsCleared += 1;
                 isCleared = true;
             }
+            if (isCleared) OnRowClear?.Invoke();
             m_isLocked = isCleared;
         }
     }

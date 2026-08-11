@@ -27,6 +27,7 @@ public class BallMovement : MonoBehaviour
             m_rigidBody2d.position.x <= ScreenBounds.Left + sizeAdjustmentX) {
             Bounce(new(-m_rigidBody2d.linearVelocityX, m_rigidBody2d.linearVelocityY));
             m_previousVelocity = m_rigidBody2d.linearVelocity;
+            GetComponent<AudioHolder>().ActivateSound(1);
         }
     }
 
@@ -38,6 +39,7 @@ public class BallMovement : MonoBehaviour
             Rigidbody2D rigidbody = collision.GetComponent<Rigidbody2D>();
             Vector2 dir = -(rigidbody.position - m_rigidBody2d.position);
             dir.y += m_bounceForce;
+            GetComponent<AudioHolder>().ActivateSound(2);
             Bounce(dir);
             m_previousVelocity = m_rigidBody2d.linearVelocity;
         }

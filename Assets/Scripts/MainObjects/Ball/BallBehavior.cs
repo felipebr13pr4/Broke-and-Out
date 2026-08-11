@@ -34,6 +34,8 @@ public class BallBehavior : MonoBehaviour
     {
         m_isRepositioning = true;
 
+        GetComponent<AudioHolder>().ActivateSound(0);
+
         if (m_repositioningArea.P_IsBrickinside) { VoidRepositioning(); yield break; }
         
         for (int i = 0; i <= 25; i++)

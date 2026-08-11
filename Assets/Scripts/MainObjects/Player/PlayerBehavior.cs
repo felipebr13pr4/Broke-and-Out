@@ -20,9 +20,14 @@ public class PlayerBehavior : EntityBehavior
         }
     }
 
+    public override void TakeDamage(int damage = 0, EntityBehavior hitter = null, bool takeAndDeal = false)
+    {
+        GetComponent<AudioHolder>().ActivateSound(0);
+        base.TakeDamage(damage, hitter, takeAndDeal);
+    }
+
     protected override void Die()
     {
-        // TODO
         OnDeath?.Invoke();
         base.Die();
     }

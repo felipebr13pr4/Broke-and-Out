@@ -5,7 +5,7 @@ public class RangedBrickBehavior : BrickBehavior
     [SerializeField] private float m_fireRate;
     public float P_FireRate { get => m_fireRate; set { m_fireRate = value; } }
     private GameObject[] m_bullets;
-    private readonly int m_maxBullets = 6;
+    private readonly int m_maxBullets = 9;
     protected override Color P_Color { get; set; } = new(1, 1, 0.2f, 1);
     protected override BrickType P_BrickType { get; set; } = BrickType.Ranged;
 

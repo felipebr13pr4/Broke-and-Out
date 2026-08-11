@@ -27,7 +27,7 @@ public class EntityBehavior : MonoBehaviour
     private bool m_isDead = false;
     public static event Action<GameObject, int> OnDamageTaken;
 
-    public void TakeDamage(int damage = 0, EntityBehavior hitter = null, bool takeAndDeal = false)
+    public virtual void TakeDamage(int damage = 0, EntityBehavior hitter = null, bool takeAndDeal = false)
     {
         if (hitter != null) damage = hitter.P_Health;
         OnDamageTaken?.Invoke(gameObject, damage);

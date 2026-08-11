@@ -41,16 +41,7 @@ public class LevelController : MonoBehaviour
     private void Start()
     {
         P_CurrentLevel = PlayerPrefs.GetInt("Current Level");
-        if (m_firstTime)
-        {
-            for (int i = 0; i < m_levels.Length; i++)
-            {
-                string json = JsonUtility.ToJson(m_levels[i], true);
-                File.WriteAllText(Application.persistentDataPath + $"/Level{i}.json", json);
-                print(json);
-            }
-            m_firstTime = false;
-        }
+        ReloadLevels();
     }
 
     private void OnEnable()
@@ -62,7 +53,22 @@ public class LevelController : MonoBehaviour
     {
         LevelButton.OnLevelChanged -= ChangeLevel;
     }
+
     private void ChangeLevel(int level) => P_CurrentLevel = level;
+
+    private void ReloadLevels()
+    {
+        if (m_firstTime)
+        {
+            for (int i = 0; i < m_levels.Length; i++)
+            {
+                string json = JsonUtility.ToJson(m_levels[i], true);
+                File.WriteAllText(Application.persistentDataPath + $"/Level{i}.json", json);
+                print(json);
+            }
+            m_firstTime = false;
+        }
+    }
 
 
     [ContextMenu("Default ALL Levels")]
@@ -237,8 +243,8 @@ public class LevelController : MonoBehaviour
 "[F][T][F][T][F][T][F][T][F][T][F]\n" +
 "[T][F][T][F][T][F][T][F][T][F][T]\n" +
 "[F][F][T][T][F][T][T][F][T][T][F]\n" +
-    "--ACTIVE--" +
-        "\n\n" +
+    "--ACTIVE--\n" +
+        "\n\n\n\n" +
     "--HEALTH--\n" +
 "[1][1][1][1][1][1][1][1][1][1][1]\n" +
 "[2][2][2][2][2][2][2][2][2][2][2]\n" +
@@ -246,7 +252,7 @@ public class LevelController : MonoBehaviour
 "[4][4][4][4][4][4][4][4][4][4][4]\n" +
 "[5][5][5][5][5][5][5][5][5][5][5]\n" +
     "--HEALTH--\n" +
-        "\n\n" +
+        "\n\n\n\n" +
     "--TIME--\n" +
 "[1.2][1][1][1][1][1][1][1][1][1][1]\n" +
 "[2][2][2][2][2][2][2][2][2][2][2]\n" +
@@ -254,7 +260,7 @@ public class LevelController : MonoBehaviour
 "[4][4][4][4][4][4][4][4][4][4][4]\n" +
 "[5][5][5][5][5][5][5][5][5][5][5]\n" +
     "--TIME--\n" +
-        "\n\n" +
+        "\n\n\n\n" +
     "--DISTANCE--\n" +
 "[1.2][1][1][1][1][1][1][1][1][1][1]\n" +
 "[2][2][2][2][2][2][2][2][2][2][2]\n" +
@@ -262,7 +268,7 @@ public class LevelController : MonoBehaviour
 "[4][4][4][4][4][4][4][4][4][4][4]\n" +
 "[5][5][5][5][5][5][5][5][5][5][5]\n" +
     "--DISTANCE--\n" +
-        "\n\n" +
+        "\n\n\n\n" +
     "--TYPE--\n" +
 "[B][E][R][B][E][R][B][E][R][B][E]\n" +
 "[E][R][B][E][R][B][E][R][B][E][R]\n" +
@@ -270,7 +276,7 @@ public class LevelController : MonoBehaviour
 "[R][E][B][R][E][B][R][E][B][R][E]\n" +
 "[B][R][E][B][R][E][B][R][E][B][R]\n" +
     "--TYPE--\n" +
-        "\n\n" +
+        "\n\n\n\n" +
     "--RANGED VALUE--\n" +
 "[1.2][1][1][1][1][1][1][1][1][1][1]\n" +
 "[2][2][2][2][2][2][2][2][2][2][2]\n" +
@@ -278,7 +284,7 @@ public class LevelController : MonoBehaviour
 "[4][4][4][4][4][4][4][4][4][4][4]\n" +
 "[5][5][5][5][5][5][5][5][5][5][5]\n" +
     "--RANGED VALUE--\n" +
-        "\n\n" +
+        "\n\n\n\n" +
     "--EXPLOSION VALUE--\n" +
 "[1.2,1][1,1][1,1][1,1][1,1][1,1][1,1][1,1][1,1][1,1][1,1]\n" +
 "[2,2][2,2][2,2][2,2][2,2][2,2][2,2][2,2][2,2][2,2][2,2]\n" +
@@ -286,5 +292,12 @@ public class LevelController : MonoBehaviour
 "[4,4][4,4][4,4][4,4][4,4][4,4][4,4][4,4][4,4][4,4][4,4]\n" +
 "[5,5][5,5][5,5][5,5][5,5][5,5][5,5][5,5][5,5][5,5][5,5]\n" +
     "--EXPLOSION VALUE--";
+    }
+
+    [ContextMenu("5 Reload All Levels Json")]
+    private void ManualLevelReload()
+    {
+        m_firstTime = true;
+        ReloadLevels();
     }
 }

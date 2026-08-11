@@ -13,22 +13,19 @@ public class EndscreenWindow : MonoBehaviour
 
     private void OnEnable()
     {
-        BrickBehavior.OnDeath += BrickDies;
+        BrickRowBehavior.OnRowClear += RowCleared;
         PlayerBehavior.OnDeath += PlayerDies;
     }
 
     private void OnDisable()
     {
-        BrickBehavior.OnDeath -= BrickDies;
+        BrickRowBehavior.OnRowClear -= RowCleared;
         PlayerBehavior.OnDeath -= PlayerDies;
     }
 
-    private void BrickDies(BrickType type)
-    {
-        StartCoroutine(CheckIfCleared());
-    }
+    private void RowCleared() => StartCoroutine(CheckIfAllCleared());
 
-    private IEnumerator CheckIfCleared()
+    private IEnumerator CheckIfAllCleared()
     {
         yield return null;
         yield return null;
@@ -43,8 +40,15 @@ public class EndscreenWindow : MonoBehaviour
         }
     }
 
-    private void PlayerDies() =>
-        OpenEndscreen("You have died!");
+    private void PlayerDies() =>StartCoroutine(DelayEndScreen("You have died!"));
+
+    private IEnumerator DelayEndScreen(string title)
+    {
+        yield return null;
+        yield return null;
+        yield return null;
+        OpenEndscreen(title);
+    }
 
     private void OpenEndscreen(string title)
     {

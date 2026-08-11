@@ -29,6 +29,7 @@ public class BulletBrick : BricksMovement
     {
         if (!collision.CompareTag("Player Hitbox")) return;
         PlayerBehavior player = collision.GetComponentInParent<PlayerBehavior>();
+        if (player != null)
         player.TakeDamage(1);
         gameObject.SetActive(false);
     }

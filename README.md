@@ -13,6 +13,8 @@ Develop branch will be where recent changes will be. And most of development.
 If you clone this project, be aware that your editor game window resolution must correlate to the available resolutions so fonts won't break.
 (1080x1920 (Most Ideal), 900x1600, 720x1280, 540x960, 360x640, 180x320)
 
+Project created at "2026-07-26T14:40:21Z", according to this repo's data from https://api.github.com/repos/felipebr13pr4/Broke-and-Out
+
 # Project Plan
 
 Made at the very start of the repo.

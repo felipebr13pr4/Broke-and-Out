@@ -5,10 +5,19 @@ public class AudioHolder : MonoBehaviour
 {
     [SerializeField] private AudioData[] m_audioData = new AudioData[4];
     public static event Action<AudioData> OnAudio;
+    public static event Action<AudioData> OnStoppableAudio;
 
     public void ActivateSound(int i, int j = 999, int k = 999, int l = 999)
     {
         OnAudio(m_audioData[i]);
+        if (j != 999 && j < m_audioData.Length) OnAudio(m_audioData[j]);
+        if (k != 999 && k < m_audioData.Length) OnAudio(m_audioData[k]);
+        if (l != 999 && l < m_audioData.Length) OnAudio(m_audioData[l]);
+    }
+
+    public void ActivateStoppableSound(int i, int j = 999, int k = 999, int l = 999)
+    {
+        OnStoppableAudio(m_audioData[i]);
         if (j != 999 && j < m_audioData.Length) OnAudio(m_audioData[j]);
         if (k != 999 && k < m_audioData.Length) OnAudio(m_audioData[k]);
         if (l != 999 && l < m_audioData.Length) OnAudio(m_audioData[l]);

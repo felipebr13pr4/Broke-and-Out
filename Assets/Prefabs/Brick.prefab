@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 4959807000886257218}
   - component: {fileID: -5610282733856979387}
   - component: {fileID: 9082557803843172252}
+  - component: {fileID: 7772611243030325481}
   m_Layer: 6
   m_Name: Brick
   m_TagString: Brick
@@ -186,3 +187,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BricksMovement
   m_timeToMove: 3
   m_distanceToMove: 1
+--- !u!114 &7772611243030325481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2305547640665358474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffafdbebfde18eb45b2f23b4ca03775e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioHolder
+  m_audioData:
+  - m_clip: {fileID: 8300000, guid: f9ecf9dea61dafd478c69b649dc7403c, type: 3}
+    m_pitch: 1
+    m_isPitchRandom: 1
+    m_min: 0.75
+    m_max: 1.25
