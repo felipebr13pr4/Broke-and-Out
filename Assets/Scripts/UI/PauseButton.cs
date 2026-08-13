@@ -17,22 +17,23 @@ public class PauseButton : MonoBehaviour
     private void OnEnable()
     {
         m_pauseButton.onClick.AddListener(TogglePause);
+        LevelController.OnLevelClear += UnableToPause;
+        PlayerBehavior.OnDeath += UnableToPause;
+
     }
 
     private void OnDisable()
     {
         m_pauseButton.onClick.RemoveListener(TogglePause);
-    }
-    private void Update()
-    {
-        if (Keyboard.current.escapeKey.wasPressedThisFrame & isActiveAndEnabled) TogglePause();
+        LevelController.OnLevelClear -= UnableToPause;
+        PlayerBehavior.OnDeath -= UnableToPause;
+
     }
 
-    public void TogglePause()
+    private void UnableToPause() => gameObject.SetActive(false);
+
+    private void TogglePause()
     {
-        GetComponent<AudioHolder>().ActivateSound(0);
-        Time.timeScale = Time.timeScale > 0 ? 0 : 1;
-        bool shouldOpenPauseWindow = Time.timeScale < 1;
-        m_pauseWindow.gameObject.SetActive(shouldOpenPauseWindow);
+        GameStateController.Instance.TogglePause();
     }
 }

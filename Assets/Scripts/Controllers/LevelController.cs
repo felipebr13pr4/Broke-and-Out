@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -23,6 +24,7 @@ public class LevelController : MonoBehaviour
         get => m_currentLevel;
         set { value = Mathf.Clamp(value, 0, 40); m_currentLevel = value; }
     }
+    public static event Action OnLevelClear;
 
     public static LevelController Instance { get; private set; }
     private void Awake()
@@ -47,14 +49,18 @@ public class LevelController : MonoBehaviour
     private void OnEnable()
     {
         LevelButton.OnLevelChanged += ChangeLevel;
+        BrickRowBehavior.OnRowClear += RowCleared;
     }
 
     private void OnDisable()
     {
         LevelButton.OnLevelChanged -= ChangeLevel;
+        BrickRowBehavior.OnRowClear += RowCleared;
     }
 
     private void ChangeLevel(int level) => P_CurrentLevel = level;
+    
+    private void RowCleared() { if (P_RowsCleared == 5) OnLevelClear?.Invoke(); }
 
     private void ReloadLevels()
     {

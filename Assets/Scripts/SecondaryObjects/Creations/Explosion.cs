@@ -12,7 +12,7 @@ public class Explosion : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.gameObject.activeInHierarchy) return;
-        if (collision.gameObject.CompareTag("Brick") | collision.gameObject.CompareTag("Player Hitbox"))
+        if (collision.gameObject.CompareTag("Player Hitbox") | collision.gameObject.CompareTag("Brick"))
         {
             EntityBehavior target = collision.gameObject.GetComponent<EntityBehavior>();
             if (collision.gameObject.CompareTag("Player Hitbox"))

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ public class BallBehavior : MonoBehaviour
     [SerializeField] private RepositionArea m_repositioningArea;
     private Rigidbody2D m_rigidBody2d;
     private bool m_isRepositioning = false;
+    public static event Action<Vector2> OnBallReposition;
     
 
     
@@ -36,6 +38,7 @@ public class BallBehavior : MonoBehaviour
 
         GetComponent<AudioHolder>().ActivateSound(0);
 
+
         if (m_repositioningArea.P_IsBrickinside) { VoidRepositioning(); yield break; }
         
         for (int i = 0; i <= 25; i++)
@@ -46,6 +49,7 @@ public class BallBehavior : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
 
+        OnBallReposition?.Invoke(m_rigidBody2d.linearVelocity);
         m_isRepositioning = false;
     }
 
@@ -57,6 +61,8 @@ public class BallBehavior : MonoBehaviour
         m_rigidBody2d.linearVelocityX = dir;
 
         m_rigidBody2d.transform.position = new(transform.position.x, ScreenBounds.Top + 1);
+
+        OnBallReposition?.Invoke(m_rigidBody2d.linearVelocity);
         m_isRepositioning = false;
     }
 }

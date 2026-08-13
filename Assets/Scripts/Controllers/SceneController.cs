@@ -1,7 +1,5 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 
 public class SceneController : MonoBehaviour
 {
@@ -50,6 +48,7 @@ public class SceneController : MonoBehaviour
     private void ResetThings(Scene scene, LoadSceneMode mode)
     {
         Time.timeScale = 1;
+        GameStateController.Instance.ResetStates();
         LevelController.Instance.P_RowsCleared = 0;
     }
 }

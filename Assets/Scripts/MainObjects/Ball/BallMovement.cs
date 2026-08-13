@@ -12,6 +12,10 @@ public class BallMovement : MonoBehaviour
 
     private void Start() => m_rigidBody2d = GetComponent<Rigidbody2D>();
 
+    private void OnEnable() => BallBehavior.OnBallReposition += SetPreviousVelocity;
+
+    private void OnDisable() => BallBehavior.OnBallReposition -= SetPreviousVelocity;
+
     private void FixedUpdate()
     {
         float sizeAdjustmentX = transform.localScale.x / 2;
@@ -59,6 +63,8 @@ public class BallMovement : MonoBehaviour
             Bounce(dir);
         }
     }
+
+    private void SetPreviousVelocity(Vector2 value) => m_previousVelocity = value;
 
     private void Bounce(Vector2 dir)
     {
