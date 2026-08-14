@@ -4,16 +4,28 @@ This repo is for learning. Comments are welcome. I will not be accepting pulling
 
 This will probably just be a Breakout clone but with some more things.
 
-A to move left.
-D to move right.
-Hit the ball with your paddle to make it go up.
-
 Develop branch will be where recent changes will be. And most of development.
 
 If you clone this project, be aware that your editor game window resolution must correlate to the available resolutions so fonts won't break.
 (1080x1920 (Most Ideal), 900x1600, 720x1280, 540x960, 360x640, 180x320)
 
 Project created at "2026-07-26T14:40:21Z", according to this repo's data from https://api.github.com/repos/felipebr13pr4/Broke-and-Out
+
+# How to play
+
+A to move left
+D to move right
+Esc to pause
+R to quick retry
+
+Hit the ball to make it go up to hit the bricks; damaging them.
+Kill all bricks to win the level.
+If the ball falls it'll reappear above you, but if there are bricks in the way it will reappear from the top of the screen.
+
+If your HP reaches 0 you die and lose the level.
+Good luck! The rest is yours to discover.
+
+(For an best experience, try challenging yourself by taking the least damage and killing most bricks.)
 
 # Project Plan
 

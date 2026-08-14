@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GlobalHotkeysController : MonoBehaviour
 {
@@ -19,17 +20,12 @@ public class GlobalHotkeysController : MonoBehaviour
 
     private void Update()
     {
+        if (SceneManager.GetActiveScene().name == "MainMenu") return;
+
         if (Keyboard.current.rKey.wasPressedThisFrame)
             SceneController.Instance.ReloadScene();
 
-        if (Keyboard.current.escapeKey.wasPressedThisFrame & isActiveAndEnabled)
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
             GameStateController.Instance.TogglePause();
-
-        if (Keyboard.current.tKey.wasPressedThisFrame)
-        {
-            print(GameStateController.Instance.P_IsLevelClear);
-            print(GameStateController.Instance.P_IsPlayerDead);
-            print(GameStateController.Instance.P_IsGamePaused);
-        }
     }
 }

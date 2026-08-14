@@ -24,6 +24,11 @@ public class SavingController : MonoBehaviour
         StartCoroutine(AutoSave());
     }
 
+    private void OnApplicationQuit()
+    {
+        SaveAll();
+    }
+
     private IEnumerator AutoSave()
     {
         while (true)
@@ -50,6 +55,7 @@ public class SavingController : MonoBehaviour
         PlayerPrefs.SetInt("Ranged Bricks Broken", DataController.Instance.P_RangedBricksBroken);
         PlayerPrefs.SetInt("Explosive Bricks Broken", DataController.Instance.P_ExplosiveBricksBroken);
         PlayerPrefs.SetInt("Current Level", LevelController.Instance.P_CurrentLevel);
+        PlayerPrefs.SetInt("Random Mode", LevelController.Instance.P_IsRandomMode ? 1 : 0);
     }
 
     private void SavePlayerPrefs()

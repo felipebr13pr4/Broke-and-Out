@@ -2,7 +2,6 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class OverlayWindow : MonoBehaviour
 {
@@ -26,13 +25,25 @@ public class OverlayWindow : MonoBehaviour
 
     private void OpenOverlayWindow()
     {
+        print("reached openoverlay");
         bool isPaused = Time.timeScale < 1;
         m_components.SetActive(isPaused);
         StartCoroutine(UpdateTitle()); 
+        StartCoroutine(EnsureComponentsActivation());
         if (!isPaused)
         {
             foreach (var window in m_otherWindows) window.SetActive(false);
             gameObject.SetActive(true);
+        }
+    }
+
+    private IEnumerator EnsureComponentsActivation()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            bool isPaused = Time.timeScale < 1;
+            m_components.SetActive(isPaused);
+            yield return null;
         }
     }
 

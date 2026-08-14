@@ -42,6 +42,7 @@ public class LevelController : MonoBehaviour
 
     private void Start()
     {
+        m_isRandomMode = PlayerPrefs.GetInt("Random Mode") == 1 ? true : false;
         P_CurrentLevel = PlayerPrefs.GetInt("Current Level");
         ReloadLevels();
     }

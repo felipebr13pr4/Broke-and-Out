@@ -79,13 +79,19 @@ public class RowsManager : MonoBehaviour
     {
         if (type == BrickType.Ranged)
         {
-            float fireRateRandomness = Random.Range(4f, 10f);
+            float fireRateRandomness = SkewedRandom(2f, 12f, 2f);
             m_levelData.P_Rows[i].P_BrickData[j].P_RangedData.P_FireRate = fireRateRandomness;
         } else
         {
-            Vector2 explosionRandomness = new(Random.Range(3, 6), Random.Range(2, 5));
+            Vector2 explosionRandomness = new(SkewedRandom(2f, 12f, 2.5f), SkewedRandom(2f, 12f, 2.5f));
             print("random explosion: " + explosionRandomness);
             m_levelData.P_Rows[i].P_BrickData[j].P_ExplosiveData.P_ExplosionRange = explosionRandomness;
         }
+    }
+
+    private float SkewedRandom(float min, float max, float bias)
+    {
+        float r = Mathf.Pow(Random.value, bias);
+        return Mathf.Lerp(min, max, r);
     }
 }

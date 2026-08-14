@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class RepositionArea : MonoBehaviour
@@ -12,7 +11,7 @@ public class RepositionArea : MonoBehaviour
     {
         LayerMask layer = 1 << LayerMask.NameToLayer("Brick");
 
-        Collider2D hit = Physics2D.OverlapBox(gameObject.transform.position, transform.localScale / 2, Quaternion.identity.eulerAngles.x, layer);
+        Collider2D hit = Physics2D.OverlapBox(gameObject.transform.position, transform.localScale, Quaternion.identity.eulerAngles.x, layer);
 
         m_isBrickInside = hit != null;
     }
@@ -20,8 +19,9 @@ public class RepositionArea : MonoBehaviour
     [ContextMenu("Adjust X Size To Camera")]
     private void AdjustXSize()
     {
-        transform.localScale = new(ScreenBounds.Right*2, transform.localScale.y);
+        transform.localScale = new(ScreenBounds.Right*2, transform.localScale.y, 1);
     }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
