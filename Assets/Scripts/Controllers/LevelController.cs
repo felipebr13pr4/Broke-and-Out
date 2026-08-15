@@ -56,7 +56,7 @@ public class LevelController : MonoBehaviour
     private void OnDisable()
     {
         LevelButton.OnLevelChanged -= ChangeLevel;
-        BrickRowBehavior.OnRowClear += RowCleared;
+        BrickRowBehavior.OnRowClear -= RowCleared;
     }
 
     private void ChangeLevel(int level) => P_CurrentLevel = level;
@@ -142,7 +142,7 @@ public class LevelController : MonoBehaviour
         {
             ErrorLogger.LogError("Data Count", result.Count.ToString());
             if (result.Count < 11) { for (int i = result.Count; i < 11; i++) result.Add(""); }
-            if (result.Count > 11) { for (int i = result.Count - 1; i > 11; i--) {
+            if (result.Count > 11) { for (int i = result.Count - 1; i >= 11; i--) {
                     print("index: " + i); result.RemoveAt(i); } }
         }
         switch (type)

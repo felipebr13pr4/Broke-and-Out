@@ -168,9 +168,10 @@ public class TestingThingsOut : MonoBehaviour
         {
             ErrorLogger.LogError("Data Count", result.Count.ToString());
             if (result.Count < 11) { for (int i = result.Count; i < 11; i++) result.Add(""); }
-            if (result.Count > 11) { for (int i = result.Count-1; i > 11; i--) {
+            if (result.Count > 11) { for (int i = result.Count - 1; i >= 11; i--) {
                     print("index: " + i); result.RemoveAt(i); } }
         }
+        print("result count: " + result.Count);
         switch (type)
         {
             case "ACTIVE":

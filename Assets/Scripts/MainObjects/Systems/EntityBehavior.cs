@@ -1,19 +1,18 @@
 using System;
 using UnityEngine;
-using UnityEngine.Timeline;
 
 public class EntityBehavior : MonoBehaviour
 {
     [SerializeField] protected int m_maxHealth = 3;
     protected virtual int P_MaxHealth { get => m_maxHealth; set { m_maxHealth = value; m_health = value; } }
-    private int m_lastHealt;
+    private int m_lastHealth;
     private int m_health;
     public int P_Health
     {
         get { return m_health; }
         set
         {
-            m_lastHealt = m_health;
+            m_lastHealth = m_health;
             m_health = value;
             m_health = Mathf.Clamp(m_health, 0, m_maxHealth);
             if (m_health <= 0 & !m_isDead) Die(); else ChangeColor();
@@ -34,7 +33,7 @@ public class EntityBehavior : MonoBehaviour
         if (hitter != null)
         {
             P_Health -= damage;
-            if (takeAndDeal) hitter.TakeDamage(m_lastHealt);
+            if (takeAndDeal) hitter.TakeDamage(m_lastHealth);
             return;
         }
         P_Health -= damage;

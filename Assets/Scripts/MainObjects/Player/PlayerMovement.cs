@@ -7,8 +7,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] protected float m_speed = 2;
     protected Rigidbody2D m_rigidBody2d;
     private float m_moveDir;
+    private SpriteRenderer m_spriteRenderer;
 
-    private void Start() => m_rigidBody2d = GetComponent<Rigidbody2D>();
+    private void Start() { m_rigidBody2d = GetComponent<Rigidbody2D>();
+        m_spriteRenderer = GetComponentInChildren<SpriteRenderer>(); }
 
 
     private void Update()
@@ -22,8 +24,7 @@ public class PlayerMovement : MonoBehaviour
         m_rigidBody2d.linearVelocity = new Vector2(m_moveDir * m_speed, 0);
 
         Vector3 pos = m_rigidBody2d.transform.position;
-        SpriteRenderer spriteRen = GetComponentInChildren<SpriteRenderer>();
-        float sizeAdjustmentX = spriteRen.size.x / 2;
+        float sizeAdjustmentX = m_spriteRenderer.size.x / 2;
         pos.x = Mathf.Clamp(pos.x, ScreenBounds.Left + sizeAdjustmentX,
                             ScreenBounds.Right - sizeAdjustmentX);
         m_rigidBody2d.position = pos;
