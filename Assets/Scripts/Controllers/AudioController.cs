@@ -37,7 +37,6 @@ public class AudioController : MonoBehaviour
         AudioHolder.OnStoppableAudio -= PlayStoppableAudio;
     }
     
-
     private void Start()
     {
         m_audioVolume = PlayerPrefs.GetFloat("Volume", 1f);
