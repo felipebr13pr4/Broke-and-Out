@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using UnityEngine;
+using static ErrorLogger;
 
 public class LevelController : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class LevelController : MonoBehaviour
         set { value = Mathf.Clamp(value, 0, 40); m_currentLevel = value; }
     }
     public static event Action OnLevelClear;
+    private const int m_bricksInARow = 11;
 
     public static LevelController Instance { get; private set; }
     private void Awake()
@@ -42,8 +44,8 @@ public class LevelController : MonoBehaviour
 
     private void Start()
     {
-        m_isRandomMode = PlayerPrefs.GetInt("Random Mode") == 1 ? true : false;
-        P_CurrentLevel = PlayerPrefs.GetInt("Current Level");
+        m_isRandomMode = PlayerPrefs.GetInt(PrefKeys.RandomMode) == 1 ? true : false;
+        P_CurrentLevel = PlayerPrefs.GetInt(PrefKeys.CurrentLevel);
         ReloadLevels();
     }
 
@@ -71,7 +73,7 @@ public class LevelController : MonoBehaviour
             {
                 string json = JsonUtility.ToJson(m_levels[i], true);
                 File.WriteAllText(Application.persistentDataPath + $"/Level{i}.json", json);
-                print(json);
+                DebugLog(json);
             }
             m_firstTime = false;
         }
@@ -105,13 +107,13 @@ public class LevelController : MonoBehaviour
 
         string[] tempString = m_levelString.Split(new[] { "\r\n", "\n" }, System.StringSplitOptions.None); ;
         string currentType = "";
-        print("tempString lenght: " + tempString.Length);
+        DebugLog("tempString lenght: " + tempString.Length);
         
         for (int i = 0; i < tempString.Length; i++)
         {
             if (tempString[i] == "") continue;
             string identify = tempString[i].StartsWith('[') ? "DATA: " : "MARKER: ";
-            print(identify + tempString[i]);
+            DebugLog(identify + tempString[i]);
 
             if (tempString[i].StartsWith('-'))
             {
@@ -137,61 +139,61 @@ public class LevelController : MonoBehaviour
             if (tempData[i] == "") continue;
             result.Add(tempData[i].Split(']')[0]);
         }
-        print("result count: " + result.Count);
-        if (result.Count != 11)
+        DebugLog("result count: " + result.Count);
+        if (result.Count != m_bricksInARow)
         {
-            ErrorLogger.LogError("Data Count", result.Count.ToString());
-            if (result.Count < 11) { for (int i = result.Count; i < 11; i++) result.Add(""); }
-            if (result.Count > 11) { for (int i = result.Count - 1; i >= 11; i--) {
-                    print("index: " + i); result.RemoveAt(i); } }
+            LogError(ErrorType.DataCount, result.Count.ToString());
+            if (result.Count < m_bricksInARow) { for (int i = result.Count; i < m_bricksInARow; i++) result.Add(""); }
+            if (result.Count > m_bricksInARow) { for (int i = result.Count - 1; i >= m_bricksInARow; i--) {
+                    DebugLog("index: " + i); result.RemoveAt(i); } }
         }
         switch (type)
         {
             case "ACTIVE":
-                for (int i = 0; i < 11; i++)
+                for (int i = 0; i < m_bricksInARow; i++)
                 {
                     if (result[i] != "T" & result[i] != "F")
-                        ErrorLogger.LogError("Active", result[i]);
+                        LogError(ErrorType.Active, result[i]);
                     m_levels[m_targetLevel].P_Rows[row].P_ShouldBrickActive[i] = result[i] == "T";
-                    print(m_levels[m_targetLevel].P_Rows[row].P_ShouldBrickActive[i]);
+                    DebugLog(m_levels[m_targetLevel].P_Rows[row].P_ShouldBrickActive[i]); 
                 }
                 return;
 
             case "HEALTH":
-                for (int i = 0; i < 11; i++)
+                for (int i = 0; i < m_bricksInARow; i++)
                 {
                     if (!int.TryParse(result[i], out _))
-                    { ErrorLogger.LogError("Health", result[i]); result[i] = "1"; }
+                    { LogError(ErrorType.Health, result[i]); result[i] = "1"; }
                     m_levels[m_targetLevel].P_Rows[row].P_BrickData[i].P_Health = int.Parse(result[i]);
-                    print(m_levels[m_targetLevel].P_Rows[row].P_BrickData[i].P_Health);
+                    DebugLog(m_levels[m_targetLevel].P_Rows[row].P_BrickData[i].P_Health);
                 }
                 return;
 
             case "TIME":
-                for (int i = 0; i < 11; i++)
+                for (int i = 0; i < m_bricksInARow; i++)
                 {
                     if (!float.TryParse(result[i], out _))
-                    { ErrorLogger.LogError("Move Time", result[i]); result[i] = "3"; }
+                    { LogError(ErrorType.MoveTime, result[i]); result[i] = "3"; }
                     m_levels[m_targetLevel].P_Rows[row].P_BrickData[i].P_TimeToMove = float.Parse(result[i], CultureInfo.InvariantCulture);
-                    print(m_levels[m_targetLevel].P_Rows[row].P_BrickData[i].P_TimeToMove);
+                    DebugLog(m_levels[m_targetLevel].P_Rows[row].P_BrickData[i].P_TimeToMove);
                 }
                 return;
 
             case "DISTANCE":
-                for (int i = 0; i < 11; i++)
+                for (int i = 0; i < m_bricksInARow; i++)
                 {
                     if (!float.TryParse(result[i], out _))
-                    { ErrorLogger.LogError("Move Distance", result[i]); result[i] = "1"; }
+                    { LogError(ErrorType.MoveDistance, result[i]); result[i] = "1"; }
                     m_levels[m_targetLevel].P_Rows[row].P_BrickData[i].P_DistanceToMove = float.Parse(result[i], CultureInfo.InvariantCulture);
-                    print(m_levels[m_targetLevel].P_Rows[row].P_BrickData[i].P_DistanceToMove);
+                    DebugLog(m_levels[m_targetLevel].P_Rows[row].P_BrickData[i].P_DistanceToMove);
                 }
                 return;
 
             case "TYPE":
-                for (int i = 0; i < 11; i++)
+                for (int i = 0; i < m_bricksInARow; i++)
                 {
                     if (result[i] != "B" & result[i] != "R" & result[i] != "E")
-                        ErrorLogger.LogError("Brick Type", result[i]);
+                        LogError(ErrorType.BrickType, result[i]);
                     m_levels[m_targetLevel].P_Rows[row].P_BrickData[i].P_BrickType = result[i] switch
                     {
                         "B" => BrickType.Basic,
@@ -199,43 +201,43 @@ public class LevelController : MonoBehaviour
                         "E" => BrickType.Explosive,
                         _ => BrickType.Basic
                     };
-                    print(m_levels[m_targetLevel].P_Rows[row].P_BrickData[i].P_BrickType);
+                    DebugLog(m_levels[m_targetLevel].P_Rows[row].P_BrickData[i].P_BrickType);
                 }
                 return;
 
             case "RANGED VALUE":
-                for (int i = 0; i < 11; i++)
+                for (int i = 0; i < m_bricksInARow; i++)
                 {
                     if (!float.TryParse(result[i], out _))
-                    { ErrorLogger.LogError("Ranged Firerate", result[i]); result[i] = "3"; }
+                    { LogError(ErrorType.RangedFirerate, result[i]); result[i] = "3"; }
                     m_levels[m_targetLevel].P_Rows[row].P_BrickData[i].P_RangedData.P_FireRate = float.Parse(result[i], CultureInfo.InvariantCulture);
-                    print(m_levels[m_targetLevel].P_Rows[row].P_BrickData[i].P_RangedData.P_FireRate);
+                    DebugLog(m_levels[m_targetLevel].P_Rows[row].P_BrickData[i].P_RangedData.P_FireRate);
                 }
                 return;
 
             case "EXPLOSION VALUE":
                 tempData = new string[22];
                 Vector2 vector = new();
-                for (int i = 0; i < 11; i++)
+                for (int i = 0; i < m_bricksInARow; i++)
                 {
                     tempData = new string[2];
                     tempData = result[i].Split(',');
                     if (result[i] == "") tempData = new string[2];
                     if (!float.TryParse(tempData[0], out _) | !float.TryParse(tempData[1], out _))
                     {
-                        ErrorLogger.LogError("Explosion Range", (tempData[0] + " " + tempData[1]));
+                        LogError(ErrorType.ExplosionRange, (tempData[0] + " " + tempData[1]));
                         tempData = new string[2]; tempData[0] = "3"; tempData[1] = "3";
                     }
 
                     vector.x = float.Parse(tempData[0], CultureInfo.InvariantCulture);
                     vector.y = float.Parse(tempData[1], CultureInfo.InvariantCulture);
                     m_levels[m_targetLevel].P_Rows[row].P_BrickData[i].P_ExplosiveData.P_ExplosionRange = vector;
-                    print(m_levels[m_targetLevel].P_Rows[row].P_BrickData[i].P_ExplosiveData.P_ExplosionRange);
+                    DebugLog(m_levels[m_targetLevel].P_Rows[row].P_BrickData[i].P_ExplosiveData.P_ExplosionRange);
                 }
                 return;
 
             default:
-                ErrorLogger.LogError("Marker", type);
+                LogError(ErrorType.Marker, type);
                 return;
         }
     }

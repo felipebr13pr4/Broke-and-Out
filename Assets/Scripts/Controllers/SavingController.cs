@@ -47,22 +47,22 @@ public class SavingController : MonoBehaviour
 
     private void Save()
     {
-        PlayerPrefs.SetInt("Brick Broken", DataController.Instance.P_BrickBroken);
-        PlayerPrefs.SetInt("Times Killed", DataController.Instance.P_TimesKilled);
-        PlayerPrefs.SetInt("Damage Taken", DataController.Instance.P_DamageTaken);
-        PlayerPrefs.SetInt("Damage Dealt", DataController.Instance.P_DamageDealt);
-        PlayerPrefs.SetInt("Basic Bricks Broken", DataController.Instance.P_BasicBricksBroken);
-        PlayerPrefs.SetInt("Ranged Bricks Broken", DataController.Instance.P_RangedBricksBroken);
-        PlayerPrefs.SetInt("Explosive Bricks Broken", DataController.Instance.P_ExplosiveBricksBroken);
-        PlayerPrefs.SetInt("Current Level", LevelController.Instance.P_CurrentLevel);
-        PlayerPrefs.SetInt("Random Mode", LevelController.Instance.P_IsRandomMode ? 1 : 0);
+        PlayerPrefs.SetInt(PrefKeys.BrickBroken, DataController.Instance.P_BrickBroken);
+        PlayerPrefs.SetInt(PrefKeys.TimesKilled, DataController.Instance.P_TimesKilled);
+        PlayerPrefs.SetInt(PrefKeys.DamageTaken, DataController.Instance.P_DamageTaken);
+        PlayerPrefs.SetInt(PrefKeys.DamageDealt, DataController.Instance.P_DamageDealt);
+        PlayerPrefs.SetInt(PrefKeys.BasicBricksBroken, DataController.Instance.P_BasicBricksBroken);
+        PlayerPrefs.SetInt(PrefKeys.RangedBricksBroken, DataController.Instance.P_RangedBricksBroken);
+        PlayerPrefs.SetInt(PrefKeys.ExplosiveBricksBroken, DataController.Instance.P_ExplosiveBricksBroken);
+        PlayerPrefs.SetInt(PrefKeys.CurrentLevel, LevelController.Instance.P_CurrentLevel);
+        PlayerPrefs.SetInt(PrefKeys.RandomMode, LevelController.Instance.P_IsRandomMode ? 1 : 0);
     }
 
     private void SavePlayerPrefs()
     {
-        PlayerPrefs.SetFloat("Volume", AudioController.Instance.P_AudioVolume);
-        PlayerPrefs.SetInt("Screen Width", Screen.width);
-        PlayerPrefs.SetInt("Screen Height", Screen.height);
-        PlayerPrefs.SetInt("Full Screen", Screen.fullScreenMode == FullScreenMode.FullScreenWindow ? 1 : 0);
+        PlayerPrefs.SetFloat(PrefKeys.Volume, AudioController.Instance.P_AudioVolume);
+        PlayerPrefs.SetInt(PrefKeys.ScreenWidth, Screen.width);
+        PlayerPrefs.SetInt(PrefKeys.ScreenHeight, Screen.height);
+        PlayerPrefs.SetInt(PrefKeys.FullScreen, Screen.fullScreenMode == FullScreenMode.FullScreenWindow ? 1 : 0);
     }
 }

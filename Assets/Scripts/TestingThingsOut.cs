@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
+using static ErrorLogger;
 
 public class TestingThingsOut : MonoBehaviour
 {
@@ -16,14 +17,14 @@ public class TestingThingsOut : MonoBehaviour
     {
         List<int> cleaned = new List<int>();
         string[] tempString = tesTY.Split('[');
-        print(tempString.Length); 
+        DebugLog(tempString.Length); 
         for (int i = 0; i < tempString.Length; i++) {
             if (tempString[i] == "") continue;
             cleaned.Add(int.Parse(tempString[i].Split(']')[0]));
         }
         for (int i = 0; i < cleaned.Count; i++)
         {
-            print(cleaned[i]);
+            DebugLog(cleaned[i]);
         }
     }
 
@@ -41,16 +42,16 @@ public class TestingThingsOut : MonoBehaviour
     {
         string[] tempString = test.Split("\n");
         string currentType = "";
-        print("tempString lenght: " + tempString.Length);
+        DebugLog("tempString lenght: " + tempString.Length);
         for (int i = 0; i < tempString.Length; i++)
         {
             string identify = tempString[i].StartsWith('[') ? "DATA: " : "MARKER: ";
-            print(identify + tempString[i]);
+            DebugLog(identify + tempString[i]);
             if (tempString[i].StartsWith('-'))
             {
                 currentType = tempString[i].Trim('-');
             }
-            print(currentType);
+            DebugLog(currentType);
         }
     }
 
@@ -64,7 +65,7 @@ public class TestingThingsOut : MonoBehaviour
     // added the others and made sure they worked properly.
     // I'll keep this here for documentations purposes.
     // And i had Claude take a quick look for any errors and it only found one.
-    // This is also good to test out in prints without fully commiting to the actual thing.
+    // This is also good to test out in DebugLogs without fully commiting to the actual thing.
 
 
     [TextArea(5, 1000)]
@@ -136,12 +137,12 @@ public class TestingThingsOut : MonoBehaviour
             levellll.P_Rows[i].P_ShouldBrickActive = new bool[11];
         string[] tempString = m_levelString.Split(new[] { "\r\n", "\n" }, System.StringSplitOptions.None); ;
         string currentType = "";
-        print("tempString lenght: " + tempString.Length);
+        DebugLog("tempString lenght: " + tempString.Length);
         for (int i = 0; i < tempString.Length; i++)
         {
             if (tempString[i] == "") continue;
             string identify = tempString[i].StartsWith('[') ? "DATA: " : "MARKER: ";
-            print(identify + tempString[i]);
+            DebugLog(identify + tempString[i]);
 
             if (tempString[i].StartsWith('-')) {
                 currentType = tempString[i].Trim('-');
@@ -163,24 +164,24 @@ public class TestingThingsOut : MonoBehaviour
             if (tempData[i] == "") continue;
             result.Add(tempData[i].Split(']')[0]);
         }
-        print("result count: " + result.Count);
+        DebugLog("result count: " + result.Count);
         if (result.Count != 11)
         {
-            ErrorLogger.LogError("Data Count", result.Count.ToString());
+            LogError(ErrorType.DataCount, result.Count.ToString());
             if (result.Count < 11) { for (int i = result.Count; i < 11; i++) result.Add(""); }
             if (result.Count > 11) { for (int i = result.Count - 1; i >= 11; i--) {
-                    print("index: " + i); result.RemoveAt(i); } }
+                    DebugLog("index: " + i); result.RemoveAt(i); } }
         }
-        print("result count: " + result.Count);
+        DebugLog("result count: " + result.Count);
         switch (type)
         {
             case "ACTIVE":
                 for (int i = 0; i < 11; i++)
                 {
                     if (result[i] != "T" & result[i] != "F")
-                        ErrorLogger.LogError("Active", result[i]);
+                        LogError(ErrorType.Active, result[i]);
                     levellll.P_Rows[row].P_ShouldBrickActive[i] = result[i] == "T";
-                    print(levellll.P_Rows[row].P_ShouldBrickActive[i]);
+                    DebugLog(levellll.P_Rows[row].P_ShouldBrickActive[i]);
                 }
                 return;
 
@@ -188,9 +189,9 @@ public class TestingThingsOut : MonoBehaviour
                 for (int i = 0; i < 11; i++)
                 {
                     if (!int.TryParse(result[i], out _))
-                        { ErrorLogger.LogError("Health", result[i]); result[i] = "1"; }
+                        { LogError(ErrorType.Health, result[i]); result[i] = "1"; }
                     levellll.P_Rows[row].P_BrickData[i].P_Health = int.Parse(result[i]);
-                    print(levellll.P_Rows[row].P_BrickData[i].P_Health);
+                    DebugLog(levellll.P_Rows[row].P_BrickData[i].P_Health);
                 }
                 return;
 
@@ -198,9 +199,9 @@ public class TestingThingsOut : MonoBehaviour
                 for (int i = 0; i < 11; i++)
                 {
                     if (!float.TryParse(result[i], out _))
-                    { ErrorLogger.LogError("Move Time", result[i]); result[i] = "3"; }
+                    { LogError(ErrorType.MoveTime, result[i]); result[i] = "3"; }
                     levellll.P_Rows[row].P_BrickData[i].P_TimeToMove = float.Parse(result[i], CultureInfo.InvariantCulture);
-                    print(levellll.P_Rows[row].P_BrickData[i].P_TimeToMove);
+                    DebugLog(levellll.P_Rows[row].P_BrickData[i].P_TimeToMove);
                 }
                 return;
 
@@ -208,9 +209,9 @@ public class TestingThingsOut : MonoBehaviour
                 for (int i = 0; i < 11; i++)
                 {
                     if (!float.TryParse(result[i], out _))
-                    { ErrorLogger.LogError("Move Distance", result[i]); result[i] = "1"; }
+                    { LogError(ErrorType.MoveDistance, result[i]); result[i] = "1"; }
                     levellll.P_Rows[row].P_BrickData[i].P_DistanceToMove = float.Parse(result[i], CultureInfo.InvariantCulture);
-                    print(levellll.P_Rows[row].P_BrickData[i].P_DistanceToMove);
+                    DebugLog(levellll.P_Rows[row].P_BrickData[i].P_DistanceToMove);
                 }
                 return;
 
@@ -218,7 +219,7 @@ public class TestingThingsOut : MonoBehaviour
                 for (int i = 0; i < 11; i++)
                 {
                     if (result[i] != "B" & result[i] != "R" & result[i] != "E")
-                        ErrorLogger.LogError("Brick Type", result[i]);
+                        LogError(ErrorType.BrickType, result[i]);
                     levellll.P_Rows[row].P_BrickData[i].P_BrickType = result[i] switch
                     {
                         "B" => BrickType.Basic,
@@ -226,7 +227,7 @@ public class TestingThingsOut : MonoBehaviour
                         "E" => BrickType.Explosive,
                         _ => BrickType.Basic
                     };
-                    print(levellll.P_Rows[row].P_BrickData[i].P_BrickType);
+                    DebugLog(levellll.P_Rows[row].P_BrickData[i].P_BrickType);
                 }
                 return;
 
@@ -234,9 +235,9 @@ public class TestingThingsOut : MonoBehaviour
                 for (int i = 0; i < 11; i++)
                 {
                     if (!float.TryParse(result[i], out _))
-                        { ErrorLogger.LogError("Ranged Firerate", result[i]); result[i] = "3"; }
+                        { LogError(ErrorType.RangedFirerate, result[i]); result[i] = "3"; }
                     levellll.P_Rows[row].P_BrickData[i].P_RangedData.P_FireRate = float.Parse(result[i], CultureInfo.InvariantCulture);
-                    print(levellll.P_Rows[row].P_BrickData[i].P_RangedData.P_FireRate);
+                    DebugLog(levellll.P_Rows[row].P_BrickData[i].P_RangedData.P_FireRate);
                 }
                 return;
 
@@ -249,18 +250,18 @@ public class TestingThingsOut : MonoBehaviour
                     tempData = result[i].Split(',');
                     if (result[i] == "") tempData = new string[2];
                     if (!float.TryParse(tempData[0], out _) | !float.TryParse(tempData[1], out _))
-                        { ErrorLogger.LogError("Explosion Range", (tempData[0] + " " + tempData[1]));
+                        { LogError(ErrorType.ExplosionRange, (tempData[0] + " " + tempData[1]));
                         tempData = new string[2]; tempData[0] = "3"; tempData[1] = "3"; }
 
                     vector.x = float.Parse(tempData[0], CultureInfo.InvariantCulture);
                     vector.y = float.Parse(tempData[1], CultureInfo.InvariantCulture);
                     levellll.P_Rows[row].P_BrickData[i].P_ExplosiveData.P_ExplosionRange = vector;
-                    print(levellll.P_Rows[row].P_BrickData[i].P_ExplosiveData.P_ExplosionRange);
+                    DebugLog(levellll.P_Rows[row].P_BrickData[i].P_ExplosiveData.P_ExplosionRange);
                 }
                 return;
 
             default:
-                ErrorLogger.LogError("Marker", type);
+                LogError(ErrorType.Marker, type);
                 return;
         }
     }
@@ -268,14 +269,20 @@ public class TestingThingsOut : MonoBehaviour
     [ContextMenu("Test 4")]
     private void Test4()
     {
-        print(LevelController.Instance.P_Levels.Length);
+        DebugLog(LevelController.Instance.P_Levels.Length);
         for (int i = 0; i < LevelController.Instance.P_Levels.Length; i++)
-            print(LevelController.Instance.P_Levels[0]);
+            DebugLog(LevelController.Instance.P_Levels[0]);
     }
 
     [ContextMenu("Test 5")]
     private void Test5()
     {
-        print(Application.persistentDataPath);
+        DebugLog(Application.persistentDataPath);
     }
 }
+
+
+
+
+// Easter egg: O
+// :)

@@ -55,7 +55,7 @@ public class RowsManager : MonoBehaviour
             {
                 int healthRandomness = Random.Range(1, 4);
                 m_levelData.P_Rows[i].P_BrickData[j].P_Health = healthRandomness;
-                print(m_levelData.P_Rows[i].P_BrickData[j].P_Health + " health");
+                ErrorLogger.DebugLog(m_levelData.P_Rows[i].P_BrickData[j].P_Health + " health");
 
                 int typeRandomness = Random.Range(0, 3);
                 BrickType type = typeRandomness == 0 ? BrickType.Basic :
@@ -70,7 +70,7 @@ public class RowsManager : MonoBehaviour
                 int activeRandomness = Random.Range(0, 2);
                 m_levelData.P_Rows[i].P_ShouldBrickActive[j] = activeRandomness == 1;
 
-                print(m_levelData.P_Rows[i].P_BrickData[j].P_RangedData.P_FireRate + " " + type);
+                ErrorLogger.DebugLog(m_levelData.P_Rows[i].P_BrickData[j].P_RangedData.P_FireRate + " " + type);
             }
         }
     }
@@ -84,7 +84,7 @@ public class RowsManager : MonoBehaviour
         } else
         {
             Vector2 explosionRandomness = new(SkewedRandom(2f, 12f, 2.5f), SkewedRandom(2f, 12f, 2.5f));
-            print("random explosion: " + explosionRandomness);
+            ErrorLogger.DebugLog("random explosion: " + explosionRandomness);
             m_levelData.P_Rows[i].P_BrickData[j].P_ExplosiveData.P_ExplosionRange = explosionRandomness;
         }
     }

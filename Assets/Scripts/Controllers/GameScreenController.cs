@@ -19,10 +19,10 @@ public class GameScreenController : MonoBehaviour
 
     private void Start()
     {
-        bool fullScreen = PlayerPrefs.GetInt("Full Screen", 1) != 0;
+        bool fullScreen = PlayerPrefs.GetInt(PrefKeys.FullScreen, 1) != 0;
         FullScreen(fullScreen);
-        int width = PlayerPrefs.GetInt("Screen Width", 1920);
-        int height = PlayerPrefs.GetInt("Screen Height", 1080);
+        int width = PlayerPrefs.GetInt(PrefKeys.ScreenWidth, 1920);
+        int height = PlayerPrefs.GetInt(PrefKeys.ScreenHeight, 1080);
         StartCoroutine(ChangeScreenResolution(width, height));
     }
 

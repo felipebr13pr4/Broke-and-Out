@@ -2,28 +2,38 @@ using UnityEngine;
 
 public class ErrorLogger : MonoBehaviour
 {
+    public enum ErrorType
+    {
+        Active = 0,
+        Health = 1,
+        MoveTime = 2,
+        MoveDistance = 3,
+        BrickType = 4,
+        RangedFirerate = 5,
+        ExplosionRange = 6,
+        Marker = 7,
+        DataCount = 8
+    }
+
+    [System.Diagnostics.Conditional("UNITY_EDITOR")]
+    [HideInCallstack]
+    public static void DebugLog(object msg)
+    {
+        Debug.Log(msg);
+    }
+
+    [System.Diagnostics.Conditional("UNITY_EDITOR")]
+    [HideInCallstack]
     public static void LogError(int errorIndex, string varInfo = "")
     {
         HandleLogError(errorIndex, varInfo);
     }
 
-    public static void LogError(string errorName, string varInfo = "")
+    [System.Diagnostics.Conditional("UNITY_EDITOR")]
+    [HideInCallstack]
+    public static void LogError(ErrorType errorType, string varInfo = "")
     {
-        int errorIndex = errorName switch
-        {
-            "Active" => 0,
-            "Health" => 1,
-            "Move Time" => 2,
-            "Move Distance" => 3,
-            "Brick Type" => 4,
-            "Ranged Firerate" => 5,
-            "Explosion Range" => 6,
-            "Marker" => 7,
-            "Data Count" => 8,
-            _ => -1,
-        };
-
-        HandleLogError(errorIndex, varInfo);
+        HandleLogError((int)errorType, varInfo);
     }
 
     private static void HandleLogError(int errorIndex, string varInfo)

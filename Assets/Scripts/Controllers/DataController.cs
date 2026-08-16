@@ -35,13 +35,13 @@ public class DataController : MonoBehaviour
      
     private void Start()
     {
-        m_brickBroken = PlayerPrefs.GetInt("Brick Broken");
-        m_timesKilled = PlayerPrefs.GetInt("Times Killed");
-        m_damageTaken = PlayerPrefs.GetInt("Damage Taken");
-        m_damageDealt = PlayerPrefs.GetInt("Damage Dealt");
-        m_basicBricksBroken = PlayerPrefs.GetInt("Basic Bricks Broken");
-        m_rangedBricksBroken = PlayerPrefs.GetInt("Ranged Bricks Broken");
-        m_explosiveBricksBroken = PlayerPrefs.GetInt("Explosive Bricks Broken");
+        m_brickBroken = PlayerPrefs.GetInt(PrefKeys.BrickBroken);
+        m_timesKilled = PlayerPrefs.GetInt(PrefKeys.TimesKilled);
+        m_damageTaken = PlayerPrefs.GetInt(PrefKeys.DamageTaken);
+        m_damageDealt = PlayerPrefs.GetInt(PrefKeys.DamageDealt);
+        m_basicBricksBroken = PlayerPrefs.GetInt(PrefKeys.BasicBricksBroken);
+        m_rangedBricksBroken = PlayerPrefs.GetInt(PrefKeys.RangedBricksBroken);
+        m_explosiveBricksBroken = PlayerPrefs.GetInt(PrefKeys.ExplosiveBricksBroken);
     }
 
     private void OnEnable()

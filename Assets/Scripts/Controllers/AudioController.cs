@@ -39,7 +39,7 @@ public class AudioController : MonoBehaviour
     
     private void Start()
     {
-        m_audioVolume = PlayerPrefs.GetFloat("Volume", 1f);
+        m_audioVolume = PlayerPrefs.GetFloat(PrefKeys.Volume, 1f);
     }
 
     public void PlayAudio(AudioData data)

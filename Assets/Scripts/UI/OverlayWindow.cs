@@ -25,7 +25,7 @@ public class OverlayWindow : MonoBehaviour
 
     private void OpenOverlayWindow()
     {
-        print("reached openoverlay");
+        ErrorLogger.DebugLog("reached openoverlay");
         bool isPaused = Time.timeScale < 1;
         m_components.SetActive(isPaused);
         StartCoroutine(UpdateTitle()); 

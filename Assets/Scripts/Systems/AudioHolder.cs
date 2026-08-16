@@ -7,20 +7,16 @@ public class AudioHolder : MonoBehaviour
     public static event Action<AudioData> OnAudio;
     public static event Action<AudioData> OnStoppableAudio;
 
-    public void ActivateSound(int i, int j = 999, int k = 999, int l = 999)
+    public void ActivateSound(params int[] indices)
     {
-        OnAudio?.Invoke(m_audioData[i]);
-        if (j != 999 && j < m_audioData.Length) OnAudio?.Invoke(m_audioData[j]);
-        if (k != 999 && k < m_audioData.Length) OnAudio?.Invoke(m_audioData[k]);
-        if (l != 999 && l < m_audioData.Length) OnAudio?.Invoke(m_audioData[l]);
+        for (int i = 0; i < indices.Length; i++)
+            OnAudio?.Invoke(m_audioData[indices[i]]);
     }
 
-    public void ActivateStoppableSound(int i, int j = 999, int k = 999, int l = 999)
+    public void ActivateStoppableSound(params int[] indices)
     {
-        OnStoppableAudio?.Invoke(m_audioData[i]);
-        if (j != 999 && j < m_audioData.Length) OnStoppableAudio?.Invoke(m_audioData[j]);
-        if (k != 999 && k < m_audioData.Length) OnStoppableAudio?.Invoke(m_audioData[k]);
-        if (l != 999 && l < m_audioData.Length) OnStoppableAudio?.Invoke(m_audioData[l]);
+        for (int i = 0; i < indices.Length; i++)
+            OnStoppableAudio?.Invoke(m_audioData[i]);
     }
 
     private void OnValidate()
