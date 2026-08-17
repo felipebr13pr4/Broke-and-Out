@@ -16,7 +16,7 @@ public class AudioHolder : MonoBehaviour
     public void ActivateStoppableSound(params int[] indices)
     {
         for (int i = 0; i < indices.Length; i++)
-            OnStoppableAudio?.Invoke(m_audioData[i]);
+            OnStoppableAudio?.Invoke(m_audioData[indices[i]]);
     }
 
     private void OnValidate()

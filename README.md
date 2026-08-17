@@ -11,7 +11,7 @@ If you clone this project, be aware that your editor game window resolution must
 
 Project created at "2026-07-26T14:40:21Z", according to this repo's data from https://api.github.com/repos/felipebr13pr4/Broke-and-Out
 
-Link itch: I'll create and add it here later.
+Link itch: https://felipebr13pr.itch.io/broke-and-out
 
 # How to play
 
@@ -138,7 +138,7 @@ Se você clonar este projeto, saiba que a sua resolução de janela de jogo tem 
 
 Projeto criado em "2026-07-26T14:40:21Z", de acordo com os dados do repo de https://api.github.com/repos/felipebr13pr4/Broke-and-Out
 
-Link do itch: (Irei botar aqui quando eu cria-lo)
+Link do itch: https://felipebr13pr.itch.io/broke-and-out
 
 # Como jogar
 
